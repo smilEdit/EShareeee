@@ -31,6 +31,6 @@ public class PersonPager extends BasePager{
 
     @Override
     protected Object OnLoadNetData() {
-        return null;
+        return "";
     }
 }
