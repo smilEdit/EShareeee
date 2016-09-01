@@ -18,6 +18,7 @@ import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+
 /**
  * @创建者 zzz
  */
@@ -28,7 +29,7 @@ public class AppConfig extends Application {
     public static Retrofit sRetrofit;
 
     public static ArrayList<Activity> sActivities = new ArrayList<>();
-//
+
     @Override
     public void onCreate() {
         super.onCreate();

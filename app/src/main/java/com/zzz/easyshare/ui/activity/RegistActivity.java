@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.zzz.easyshare.R;
 
@@ -49,7 +50,8 @@ public class RegistActivity extends AppCompatActivity {
             case R.id.bt_regist_regist:
                 break;
             case R.id.tv_regist_login:
-                startActivity(new Intent(RegistActivity.this,LoginActivity.class));
+                startActivity(new Intent(RegistActivity.this, LoginActivity.class));
+                Toast.makeText(RegistActivity.this, "click", Toast.LENGTH_SHORT).show();
                 break;
         }
     }

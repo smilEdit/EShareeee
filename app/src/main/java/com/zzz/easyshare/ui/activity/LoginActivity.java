@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.tv_login_forgotmm, R.id.bt_login_login, R.id.iv_login_weichat, R.id.iv_login_qq,R.id.tv_login_regist,R.id.tv_login_tohome})
+    @OnClick({R.id.tv_login_forgotmm, R.id.bt_login_login, R.id.iv_login_weichat, R.id.iv_login_qq, R.id.tv_login_regist, R.id.tv_login_tohome})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_login_forgotmm:
@@ -55,7 +55,7 @@ public class LoginActivity extends AppCompatActivity {
             case R.id.iv_login_qq:
                 break;
             case R.id.tv_login_tohome:
-                startActivity(new Intent(LoginActivity.this,MainActivity.class));
+                startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 finish();
                 break;
             case R.id.tv_login_regist:
