@@ -28,7 +28,7 @@ public class AppConfig extends Application {
     public static Retrofit sRetrofit;
 
     public static ArrayList<Activity> sActivities = new ArrayList<>();
-
+//
     @Override
     public void onCreate() {
         super.onCreate();
