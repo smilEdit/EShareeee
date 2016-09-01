@@ -1,15 +1,26 @@
 package com.zzz.easyshare.ui.pager;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.ListView;
 
 import com.zzz.easyshare.R;
+import com.zzz.easyshare.ui.activity.DetailActivity;
+
+import butterknife.Bind;
+import butterknife.OnClick;
 
 /**
  * @创建者 zlf
  * @创建时间 2016/8/31 14:53
  */
 public class MessagePager extends BasePager {
+    @Bind(R.id.iv_pager_topic)
+    ImageView mIvPagerTopic;
+    @Bind(R.id.lv_pager_message)
+    ListView  mLvPagerMessage;
     private View mView;
 
     /**
@@ -19,7 +30,7 @@ public class MessagePager extends BasePager {
      */
     public MessagePager(Activity context) {
         super(context);
-        setNoPagerState(false);
+        setNoPagerState(true);
     }
 
     @Override
@@ -30,6 +41,18 @@ public class MessagePager extends BasePager {
 
     @Override
     protected Object OnLoadNetData() {
-        return null;
+        return "";
+    }
+
+
+    @OnClick({R.id.iv_pager_topic})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.iv_pager_topic:
+                Intent intent = new Intent();
+                intent.putExtra("www.baidu.com", "");
+                getParentActivity().startActivity(new Intent(getParentActivity(),DetailActivity.class));
+                break;
+        }
     }
 }

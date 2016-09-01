@@ -8,7 +8,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -17,7 +16,7 @@ import android.widget.EditText;
 import com.zzz.easyshare.AppConfig;
 import com.zzz.easyshare.R;
 import com.zzz.easyshare.manager.DataLoader;
-import com.zzz.easyshare.utils.ToastUtil;
+import com.zzz.easyshare.utils.ZToast;
 
 import java.util.Map;
 
@@ -63,7 +62,6 @@ public class BaseActivity<T> extends AppCompatActivity implements ViewPager.OnPa
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         View view = getCurrentFocus();
-        Log.i(TAG, "dispatchTouchEvent: 当前的view=" + view);
         if (isShouldHideKeyBoard(view, ev)) {
             hideKeyBoard(view.getWindowToken());
         }
@@ -152,7 +150,7 @@ public class BaseActivity<T> extends AppCompatActivity implements ViewPager.OnPa
      * @param text 要弹出的文本。
      */
     protected void showShortToast(String text) {
-        ToastUtil.showShortToast(this, text);
+        ZToast.showShortToast(this, text);
     }
 
     @Override

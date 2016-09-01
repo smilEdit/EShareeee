@@ -8,7 +8,7 @@ import android.util.Log;
 import com.zzz.easyshare.AppConfig;
 import com.zzz.easyshare.api.NetLoader;
 import com.zzz.easyshare.api.URL;
-import com.zzz.easyshare.utils.ToastUtil;
+import com.zzz.easyshare.utils.ZToast;
 
 import java.io.IOException;
 import java.util.Map;
@@ -58,7 +58,7 @@ public class HttpLoader {
         String name = Thread.currentThread().getName();
 
         if (TextUtils.equals("main", name)) {
-            ToastUtil.showLongToast(AppConfig.sContext, "主线程获取网络数据~");
+            ZToast.showLongToast(AppConfig.sContext, "主线程获取网络数据~");
         }
 
 

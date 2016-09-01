@@ -26,7 +26,7 @@ public class ExplorePager extends BasePager {
      */
     public ExplorePager(Activity context) {
         super(context);
-        setNoPagerState(false);
+        setNoPagerState(true);
     }
 
     @Override
@@ -37,6 +37,10 @@ public class ExplorePager extends BasePager {
 
     private void initView() {
         mView = View.inflate(getParentActivity(), R.layout.pager_explore, null);
+        initConvenient();
+    }
+
+    private void initConvenient() {
         mConvenientBanner = (ConvenientBanner) mView.findViewById(R.id.convenient);
         List<Integer> localImages = new ArrayList<>();
         for (int i = 0; i < 5; i++) {

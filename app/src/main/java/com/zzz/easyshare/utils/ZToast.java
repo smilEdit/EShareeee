@@ -8,7 +8,7 @@ import android.text.TextUtils;
 import android.widget.Toast;
 
 
-public class ToastUtil {
+public class ZToast {
     /**
      * Toast的文本内容。
      */
@@ -42,7 +42,7 @@ public class ToastUtil {
     };
 
     //私有构造函数，防止别人创建本类对象
-    private ToastUtil() {
+    private ZToast() {
         super();
     }
 

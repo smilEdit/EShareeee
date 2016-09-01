@@ -7,7 +7,7 @@ import android.view.View;
  * @创建者 zlf
  * @创建时间 2016/8/18 17:00
  */
-public class zSnack {
+public class ZSnack {
     private static Snackbar sSnackbar;
 
     public static void showSnackLong(View view, CharSequence show, CharSequence actionShow) {

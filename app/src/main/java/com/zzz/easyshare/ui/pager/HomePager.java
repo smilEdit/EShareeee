@@ -28,7 +28,7 @@ public class HomePager extends BasePager{
      */
     public HomePager(Activity context) {
         super(context);
-        setNoPagerState(false);
+        setNoPagerState(true);
     }
 
 

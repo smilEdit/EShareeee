@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.zzz.easyshare.R;
+import com.zzz.easyshare.utils.ZImageLoader;
 
 import java.util.List;
 
@@ -127,7 +128,8 @@ public abstract class LoadingPage<E> extends FrameLayout {
         if (mLoadingView == null) {
             mLoadingView = View.inflate(getContext(), R.layout.page_loading, null);
             mIvLoadingImg = (ImageView) mLoadingView.findViewById(R.id.iv_loading);
-            Glide.with(getContext()).load(R.mipmap.loading_gif).into(mIvLoadingImg);
+//            Glide.with(getContext()).load(R.mipmap.loading_gif).into(mIvLoadingImg);
+            ZImageLoader.setImg(getContext(),R.mipmap.loading_gif,mIvLoadingImg);
         }
         addView(mLoadingView);
         if (mErrorView == null) {
@@ -142,7 +144,8 @@ public abstract class LoadingPage<E> extends FrameLayout {
                 @Override
                 public void onClick(View v) {
                     mCurrentState = PageState.STATE_LOADING;
-                    Glide.with(getContext()).load(R.mipmap.loading_gif).into(mIvLoadingImg);
+//                    Glide.with(getContext()).load(R.mipmap.loading_gif).into(mIvLoadingImg);
+                    ZImageLoader.setImg(getContext(),R.mipmap.loading_gif,mIvLoadingImg);
                     showPage();
                     initData();
                 }
@@ -188,11 +191,13 @@ public abstract class LoadingPage<E> extends FrameLayout {
                 break;
             case STATE_ERROR:  //加载失败
                 mErrorView.setVisibility(VISIBLE);
-                Glide.clear(mIvLoadingImg);
+//                Glide.clear(mIvLoadingImg);
+                ZImageLoader.clear(mIvLoadingImg);
                 break;
             case STATE_SUCCESS:  //加载成功
                 mSuccessView.setVisibility(VISIBLE);
-                Glide.clear(mIvLoadingImg);
+                ZImageLoader.clear(mIvLoadingImg);
+//                Glide.clear(mIvLoadingImg);
                 break;
         }
     }
