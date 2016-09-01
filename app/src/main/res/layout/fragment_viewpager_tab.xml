@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <com.zzz.easyshare.widget.PagerSlidingTabStrip
+        android:id="@+id/slidingtab"
+        android:layout_width="match_parent"
+        android:layout_height="48dip"
+        android:textColor="#999999"
+        android:textSize="18sp"
+        app:pstsDividerColor="@android:color/transparent"
+        app:pstsIndicatorColor="@color/md_green_600_color_code"
+        app:pstsIndicatorHeight="4dp"
+        app:pstsSelectedTextColor="@color/md_green_600_color_code"
+        app:pstsShouldExpand="true"
+        app:pstsTabBackground="@android:color/transparent"
+        app:pstsUnderlineHeight="1dp"/>
+
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>
