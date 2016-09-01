@@ -7,12 +7,7 @@ import android.os.Message;
 import android.text.TextUtils;
 import android.widget.Toast;
 
-/**
- * @描述 Toast工具类
- * @创建人 kelin
- * @创建时间 2016/7/29  15:53
- * @包名 com.itheima.openchina.util
- */
+
 public class ToastUtil {
     /**
      * Toast的文本内容。
