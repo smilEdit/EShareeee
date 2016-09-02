@@ -3,6 +3,9 @@ package com.zzz.easyshare.ui.activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,6 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.zzz.easyshare.R;
+import com.zzz.easyshare.utils.ZImage;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -73,7 +77,8 @@ public class ShareActivity extends BaseActivity {
         Intent intent = getIntent();
         String path = intent.getStringExtra("path");
         if (!TextUtils.isEmpty(path)) {
-            //            ZImageLoader.setImg(ShareActivity.this,path,);
+            Bitmap bitmap = BitmapFactory.decodeFile(path);
+            setPreviewImage(bitmap);
         }
     }
 
@@ -111,8 +116,9 @@ public class ShareActivity extends BaseActivity {
                                 String storageState = Environment.getExternalStorageState();
                                 if (storageState.equals(Environment.MEDIA_MOUNTED)) {
                                     savePath = Environment.getExternalStorageDirectory()
-                                            .getAbsolutePath() + "/oschina/Camera/";
+                                            .getAbsolutePath() + "/EasyShare/Camera/";
                                     File savedir = new File(savePath);
+                                    System.out.println(savePath);
                                     if (!savedir.exists()) {
                                         savedir.mkdirs();
                                     }
@@ -128,6 +134,7 @@ public class ShareActivity extends BaseActivity {
                                 File out = new File(savePath, fileName);
                                 Uri uri = Uri.fromFile(out);
                                 mPath = savePath + fileName;
+                                System.out.println("........1"+mPath);
                                 intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                                 intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
                                 startActivityForResult(intent, 1);
@@ -138,7 +145,7 @@ public class ShareActivity extends BaseActivity {
                 "取消", null).show();
     }
 
-    @OnClick({R.id.iv_share_clear_icon1, R.id.rl_share_good1, R.id.iv_share_clear_icon2, R.id.iv_share_location, R.id.iv_share_picture1})
+    @OnClick({R.id.iv_share_clear_icon1,R.id.iv_share_picture2, R.id.rl_share_good1, R.id.iv_share_clear_icon2, R.id.iv_share_location, R.id.iv_share_picture1})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_share_clear_icon1:
@@ -150,8 +157,77 @@ public class ShareActivity extends BaseActivity {
             case R.id.iv_share_picture1:
                 showSelectDialog();
                 break;
+            case R.id.iv_share_picture2:
+                showSelectDialog();
+                break;
             case R.id.iv_share_location:
                 break;
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case 0:
+                getImage(resultCode, data);
+                break;
+            case 1:
+                getCamera(resultCode);
+                break;
+            case 2:
+                Uri uri = data.getParcelableExtra("path");
+                String path = ZImage.getAbsoluteImagePath(uri, this);
+                Bitmap bitmap = BitmapFactory.decodeFile(path);
+                setPreviewImage(bitmap);
+                break;
+            case 3:
+                String s = data.getStringExtra("path");
+                Bitmap b = BitmapFactory.decodeFile(s);
+                setPreviewImage(b);
+                break;
+        }
+    }
+
+    private void getCamera(int resultCode) {
+        if (resultCode == RESULT_CANCELED) {
+            return;
+        }
+        if (!TextUtils.isEmpty(mPath)) {
+            Bitmap bitmap = BitmapFactory.decodeFile(mPath);
+            System.out.println("........2"+mPath);
+            setPreviewImage(bitmap);
+        }
+    }
+
+    private void getImage(int resultCode, Intent data) {
+        if (resultCode == RESULT_CANCELED || data == null) {
+            return;
+        }
+        Uri uri = data.getData();
+        if (uri != null) {
+            //通过URI获取路径
+            String path = ZImage.getAbsoluteImagePath(uri, this);
+            mPath = path;
+            Bitmap bitmap = BitmapFactory.decodeFile(path);
+            setPreviewImage(bitmap);
+        }
+    }
+
+    private void setPreviewImage(Bitmap bitmap) {
+        if (bitmap == null) {
+            return;
+        }
+        Bitmap newbmp = null;
+        int width = bitmap.getWidth();
+        int height = bitmap.getHeight();
+        Matrix matrix = new Matrix();
+        float scaleWidth = ((float) 100 / width);
+        float scaleHeight = ((float) 100 / height);
+        matrix.postScale(scaleWidth, scaleHeight);
+        newbmp = Bitmap.createBitmap(bitmap, 0, 0, width, height, matrix,
+                true);
+        mIvSharePicture1.setImageBitmap(newbmp);
+        //mRlImg.setVisibility(View.VISIBLE);
     }
 }
