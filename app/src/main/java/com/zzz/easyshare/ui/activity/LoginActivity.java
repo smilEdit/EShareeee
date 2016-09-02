@@ -14,6 +14,7 @@ import com.zzz.easyshare.R;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import tyrantgit.explosionfield.ExplosionField;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -35,11 +36,13 @@ public class LoginActivity extends AppCompatActivity {
     TextView  mTvLoginTohome;
     @Bind(R.id.tv_login_regist)
     TextView  mTvLoginRegist;
+    private ExplosionField mExplosionField;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        mExplosionField = ExplosionField.attach2Window(this);
         ButterKnife.bind(this);
     }
 
@@ -50,6 +53,7 @@ public class LoginActivity extends AppCompatActivity {
                 toForgotmm();
                 break;
             case R.id.bt_login_login:
+                mExplosionField.explode(view);
                 toLogin();
                 break;
             case R.id.iv_login_weichat:
@@ -59,10 +63,13 @@ public class LoginActivity extends AppCompatActivity {
                 toQQ();
                 break;
             case R.id.tv_login_tohome:
+                mExplosionField.explode(view);
                 toHome();
                 break;
             case R.id.tv_login_regist:
+                mExplosionField.explode(view);
                 toRegist();
+
                 break;
         }
     }
