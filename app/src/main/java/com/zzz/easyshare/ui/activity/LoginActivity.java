@@ -47,20 +47,50 @@ public class LoginActivity extends AppCompatActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_login_forgotmm:
+                toForgotmm();
                 break;
             case R.id.bt_login_login:
+                toLogin();
                 break;
             case R.id.iv_login_weichat:
+                toWeichat();
                 break;
             case R.id.iv_login_qq:
+                toQQ();
                 break;
             case R.id.tv_login_tohome:
-                startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                finish();
+                toHome();
                 break;
             case R.id.tv_login_regist:
-                startActivity(new Intent(LoginActivity.this, RegistActivity.class));
+                toRegist();
                 break;
         }
+    }
+
+    private void toForgotmm() {
+        
+    }
+
+    private void toWeichat() {
+        
+    }
+
+    private void toQQ() {
+        
+    }
+
+    private void toHome() {
+        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+        finish();
+
+    }
+
+    private void toRegist() {
+        startActivity(new Intent(LoginActivity.this, RegistActivity.class));
+
+    }
+
+    private void toLogin() {
+
     }
 }

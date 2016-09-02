@@ -59,6 +59,7 @@ public class ShareActivity extends BaseActivity {
 
     private void initActionBar() {
         mActionBar.setTitle("share");
+
     }
 
     @OnClick({R.id.iv_share_good1, R.id.iv_sahre_good2})

@@ -7,7 +7,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.zzz.easyshare.R;
-import com.zzz.easyshare.ui.activity.DetailActivity;
+import com.zzz.easyshare.ui.activity.WebDetailActivity;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -49,10 +49,15 @@ public class MessagePager extends BasePager {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_pager_topic:
-                Intent intent = new Intent();
-                intent.putExtra("www.baidu.com", "");
-                getParentActivity().startActivity(new Intent(getParentActivity(),DetailActivity.class));
+                String url = "";
+                toDetailWeb(url);
                 break;
         }
+    }
+
+    private void toDetailWeb(String url) {
+        Intent intent = new Intent();
+        intent.putExtra("www.baidu.com", "");
+        getParentActivity().startActivity(new Intent(getParentActivity(),WebDetailActivity.class));
     }
 }
