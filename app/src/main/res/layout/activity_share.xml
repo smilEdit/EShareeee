@@ -8,91 +8,150 @@
     tools:context="com.zzz.easyshare.ui.activity.ShareActivity">
 
     <EditText
-        android:background="@null"
         android:id="@+id/et_share_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@null"
         android:hint="input the title(about name,brand......)"/>
 
     <EditText
-        android:background="@null"
-        android:hint="description of goods..."
         android:id="@+id/et_share_description"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@null"
+        android:gravity="top"
+        android:hint="description of goods..."
         android:inputType="textMultiLine"
         android:scrollbars="vertical"
-        android:gravity="top"
         android:textColor="?android:editTextColor"
-        android:textSize="18sp"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"/>
+        android:textSize="18sp"/>
+
     <LinearLayout
-        android:id="@+id/tl_share_images"
-        android:orientation="horizontal"
+        android:id="@+id/rl_share_picture"
         android:layout_width="match_parent"
-        android:layout_height="60dp">
-        <ImageView
-            android:src="@mipmap/ic_launcher"
-            android:id="@+id/iv_share_good1"
+        android:layout_height="wrap_content"
+        android:gravity="bottom"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <RelativeLayout
+            android:id="@+id/rl_share_good1"
             android:layout_width="60dp"
-            android:clickable="true"
-            android:layout_height="60dp"/>
-        <ImageView
-            android:src="@mipmap/ic_launcher"
-            android:id="@+id/iv_sahre_good2"
+            android:layout_height="60dp"
+            >
+
+            <ImageView
+                android:id="@+id/iv_share_picture1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
+                android:background="#1a000000"
+                android:clickable="true"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/ic_launcher"/>
+
+            <ImageView
+                android:id="@+id/iv_share_clear_icon1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:background="@drawable/selector_clear_picture"/>
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/rl_share_good2"
             android:layout_width="60dp"
-            android:layout_height="60dp"/>
+            android:layout_height="60dp"
+            >
+
+            <ImageView
+                android:id="@+id/iv_share_picture2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
+                android:background="#1a000000"
+                android:clickable="true"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/ic_launcher"/>
+
+            <ImageView
+                android:id="@+id/iv_share_clear_icon2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:background="@drawable/selector_clear_picture"/>
+
+        </RelativeLayout>
+
+
     </LinearLayout>
+
     <LinearLayout
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
         <ImageView
             android:id="@+id/iv_share_location"
-            android:src="@mipmap/ic_launcher"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher"/>
+
         <TextView
-            android:text="share location or not"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:text="share location or not"/>
     </LinearLayout>
+
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
         <TextView
-            android:text="price:"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:text="price:"/>
+
         <EditText
             android:id="@+id/money"
-            android:hint="$0.00"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:background="@null"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:hint="$0.00"/>
     </LinearLayout>
+
     <LinearLayout
-        android:orientation="horizontal"
-        android:background="@null"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:orientation="horizontal">
+
         <TextView
-            android:text="type:"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:text="type:"/>
+
         <EditText
             android:id="@+id/eT_share_type"
-            android:hint="choose a type"
-            android:background="@null"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:hint="choose a type"/>
     </LinearLayout>
+
     <TextView
-        android:drawableRight="@mipmap/ic_launcher"
-        android:layout_marginTop="100dp"
-        android:text="finish"
-        android:gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:drawableRight="@mipmap/ic_launcher"
+        android:gravity="center"
+        android:text="finish"/>
 </LinearLayout>

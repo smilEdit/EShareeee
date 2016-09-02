@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.zzz.easyshare.R;
 
@@ -26,22 +27,31 @@ import butterknife.OnClick;
 
 public class ShareActivity extends BaseActivity {
 
+
     @Bind(R.id.et_share_title)
-    EditText     mEtShareTitle;
+    EditText       mEtShareTitle;
     @Bind(R.id.et_share_description)
-    EditText     mEtShareDescription;
-    @Bind(R.id.iv_share_good1)
-    ImageView    mIvShareGood1;
-    @Bind(R.id.iv_sahre_good2)
-    ImageView    mIvSahreGood2;
-    @Bind(R.id.tl_share_images)
-    LinearLayout mTlShareImages;
+    EditText       mEtShareDescription;
+    @Bind(R.id.iv_share_picture1)
+    ImageView      mIvSharePicture1;
+    @Bind(R.id.iv_share_clear_icon1)
+    ImageView      mIvShareClearIcon1;
+    @Bind(R.id.rl_share_good1)
+    RelativeLayout mRlShareGood1;
+    @Bind(R.id.iv_share_picture2)
+    ImageView      mIvSharePicture2;
+    @Bind(R.id.iv_share_clear_icon2)
+    ImageView      mIvShareClearIcon2;
+    @Bind(R.id.rl_share_good2)
+    RelativeLayout mRlShareGood2;
+    @Bind(R.id.rl_share_picture)
+    LinearLayout   mRlSharePicture;
     @Bind(R.id.iv_share_location)
-    ImageView    mIvShareLocation;
+    ImageView      mIvShareLocation;
     @Bind(R.id.money)
-    EditText     mMoney;
+    EditText       mMoney;
     @Bind(R.id.eT_share_type)
-    EditText     mETShareType;
+    EditText       mETShareType;
     private String mPath;
 
 
@@ -50,11 +60,21 @@ public class ShareActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_share);
         ButterKnife.bind(this);
+
         init();
     }
 
     private void init() {
         initActionBar();
+        initData();
+    }
+
+    private void initData() {
+        Intent intent = getIntent();
+        String path = intent.getStringExtra("path");
+        if (!TextUtils.isEmpty(path)) {
+            //            ZImageLoader.setImg(ShareActivity.this,path,);
+        }
     }
 
     private void initActionBar() {
@@ -62,16 +82,6 @@ public class ShareActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.iv_share_good1, R.id.iv_sahre_good2})
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.iv_share_good1:
-                showSelectDialog();
-                break;
-            case R.id.iv_sahre_good2:
-                break;
-        }
-    }
 
     private void showSelectDialog() {
         new AlertDialog.Builder(this).setTitle("请选择图片来源").setItems(
@@ -126,5 +136,22 @@ public class ShareActivity extends BaseActivity {
                     }
                 }).setNegativeButton(
                 "取消", null).show();
+    }
+
+    @OnClick({R.id.iv_share_clear_icon1, R.id.rl_share_good1, R.id.iv_share_clear_icon2, R.id.iv_share_location, R.id.iv_share_picture1})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.iv_share_clear_icon1:
+                break;
+            case R.id.rl_share_good1:
+                break;
+            case R.id.iv_share_clear_icon2:
+                break;
+            case R.id.iv_share_picture1:
+                showSelectDialog();
+                break;
+            case R.id.iv_share_location:
+                break;
+        }
     }
 }

@@ -37,6 +37,8 @@ public class LoginActivity extends AppCompatActivity {
     @Bind(R.id.tv_login_regist)
     TextView  mTvLoginRegist;
     private ExplosionField mExplosionField;
+    private String mPassword;
+    private String mNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +56,9 @@ public class LoginActivity extends AppCompatActivity {
                 break;
             case R.id.bt_login_login:
                 mExplosionField.explode(view);
-                toLogin();
+                mNumber = mEtLoginNumber.getText().toString();
+                mPassword = mEtLoginPassword.getText().toString();
+                toLogin(mNumber,mPassword);
                 break;
             case R.id.iv_login_weichat:
                 toWeichat();
@@ -94,10 +98,10 @@ public class LoginActivity extends AppCompatActivity {
 
     private void toRegist() {
         startActivity(new Intent(LoginActivity.this, RegistActivity.class));
-
+        finish();
     }
 
-    private void toLogin() {
+    private void toLogin(String number, String password) {
 
     }
 }
