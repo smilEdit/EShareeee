@@ -69,7 +69,6 @@ public class PersonPager extends BasePager {
         switch (view.getId()) {
             case R.id.iv_person_avatar:
                 changeAvatar();
-
                 break;
             case R.id.tv_person_nickname:
                 break;

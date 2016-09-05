@@ -8,6 +8,7 @@ import android.widget.ListView;
 
 import com.zzz.easyshare.R;
 import com.zzz.easyshare.ui.activity.WebDetailActivity;
+import com.zzz.easyshare.utils.ZImageLoader;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -44,6 +45,11 @@ public class MessagePager extends BasePager {
         return "";
     }
 
+    @Override
+    protected void onUiRefresh(Object o) {
+        super.onUiRefresh(o);
+        ZImageLoader.setImg(getParentActivity(),"http://img1.imgtn.bdimg.com/it/u=1581831496,1600408569&fm=21&gp=0.jpg",mIvPagerTopic);
+    }
 
     @OnClick({R.id.iv_pager_topic})
     public void onClick(View view) {
@@ -56,8 +62,8 @@ public class MessagePager extends BasePager {
     }
 
     private void toDetailWeb(String url) {
-        Intent intent = new Intent();
-        intent.putExtra("www.baidu.com", "");
-        getParentActivity().startActivity(new Intent(getParentActivity(),WebDetailActivity.class));
+        Intent intent = new Intent(getParentActivity(),WebDetailActivity.class);
+        intent.putExtra("address", "https://2.taobao.com/");
+        getParentActivity().startActivity(intent);
     }
 }

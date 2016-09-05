@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.zzz.easyshare.R;
+import com.zzz.easyshare.utils.ZToast;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -102,6 +103,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void toLogin(String number, String password) {
-
+        ZToast.showShortToast(LoginActivity.this,number+password);
     }
 }

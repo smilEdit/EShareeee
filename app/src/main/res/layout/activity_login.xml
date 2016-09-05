@@ -1,129 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.zzz.easyshare.ui.activity.LoginActivity">
+    android:orientation="vertical"
+    tools:context="com.zzz.easyshare.ui.activity.LoginActivity"
+    >
 
-    <LinearLayout
+    <ImageView
+        android:id="@+id/iv_login_welcome"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:src="@mipmap/ic_launcher"/>
 
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:layout_height="wrap_content">
 
-        >
-
-        <ImageView
-            android:id="@+id/iv_login_welcome"
-            android:layout_width="300dp"
-            android:layout_height="200dp"
-            android:layout_gravity="center"
-            android:src="@mipmap/ic_launcher"/>
-
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/et_login_number"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@null"
             android:hint="phone number or nickname"
-            android:textColor="@color/md_grey_600_color_code"/>
+            android:maxLines="1"
+            android:singleLine="true"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <EditText
             android:id="@+id/et_login_password"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:background="@null"
             android:hint="password"
             android:inputType="textPassword"
-            android:textColor="@color/md_grey_600_color_code"/>
+            android:maxLines="1"
+            android:singleLine="true"/>
+    </android.support.design.widget.TextInputLayout>
 
-        <TextView
-            android:id="@+id/tv_login_forgotmm"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="80dp"
-            android:text="forgot pwd"/>
+    <TextView
+        android:id="@+id/tv_login_forgotmm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="80dp"
+        android:text="forgot pwd"/>
 
-        <Button
-            android:id="@+id/bt_login_login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="login"/>
+    <Button
+        android:id="@+id/bt_login_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="login"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal">
-
-            <View
-                android:layout_width="100dp"
-                android:layout_height="1dp"
-                android:layout_gravity="center"
-                android:background="@color/md_black_color_code"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="third party login"/>
-
-            <View
-                android:layout_width="100dp"
-                android:layout_height="1dp"
-                android:layout_gravity="center"
-                android:background="@color/md_black_color_code"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/iv_login_weichat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher"/>
-
-            <ImageView
-                android:id="@+id/iv_login_qq"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:src="@mipmap/ic_launcher"/>
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true">
-        <TextView
-            android:id="@+id/tv_login_tohome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:drawableLeft="@mipmap/ic_launcher"
-            android:gravity="center"
-            android:text="home page"/>
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="100dp"
+            android:layout_height="1dp"
+            android:layout_gravity="center"
+            android:background="@color/md_black_color_code"/>
 
         <TextView
-            android:id="@+id/tv_login_regist"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:clickable="true"
-            android:drawableRight="@mipmap/ic_launcher"
-            android:gravity="center"
-            android:text="regist"/>
-    </RelativeLayout>
+            android:text="third party login"/>
 
+        <View
+            android:layout_width="100dp"
+            android:layout_height="1dp"
+            android:layout_gravity="center"
+            android:background="@color/md_black_color_code"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/iv_login_weichat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher"/>
+
+        <ImageView
+            android:id="@+id/iv_login_qq"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:src="@mipmap/ic_launcher"/>
+    </LinearLayout>
+
+
+
+<RelativeLayout
+
+android:layout_width="match_parent"
+android:layout_weight="1"
+android:layout_height="0dp">
+<TextView
+    android:layout_alignParentBottom="true"
+    android:id="@+id/tv_login_tohome"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:drawableLeft="@mipmap/ic_launcher"
+    android:gravity="center"
+    android:text="home page"/>
+
+<TextView
+    android:layout_alignParentRight="true"
+    android:layout_alignParentBottom="true"
+    android:id="@+id/tv_login_regist"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:drawableRight="@mipmap/ic_launcher"
+    android:gravity="center"
+    android:text="regist"/>
 </RelativeLayout>
+</LinearLayout>
+

@@ -35,4 +35,5 @@ dependencies {
     compile 'com.bigkoo:convenientbanner:2.0.5'
     compile 'com.android.support:design:24.1.1'
     compile 'tyrantgit:explosionfield:1.0.1'
+    compile 'com.orhanobut:logger:1.15'
 }
