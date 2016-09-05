@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="250dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<ImageView
+    android:id="@+id/iv_message_head"
+    android:layout_width="match_parent"
+    android:layout_height="250dp"
+    android:clickable="true"
+    android:orientation="vertical"
+    android:src="@mipmap/ic_launcher"/>
+</RelativeLayout>

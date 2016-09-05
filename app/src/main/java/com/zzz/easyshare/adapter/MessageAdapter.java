@@ -1,38 +1,48 @@
 package com.zzz.easyshare.adapter;
 
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.orhanobut.logger.Logger;
 import com.zzz.easyshare.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
-
 /**
  * @创建者 zlf
  * @创建时间 2016/9/1 15:53
  */
-public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHolder> {
 
     public static final int TYPE_HEAD = 0;
     public static final int TYPE_ITEM = 1;
     public static final int TYPE_FOOT = 2;
-    public static final int conout    = 1;
+    public static final int counts    = 1;
     private boolean mFlag;
-
+    private View    mHeadView;
 
     private List<String> mList = new ArrayList<>();
     //    private List<Message> list = new ArrayList<>();
 
 
-    public MessageAdapter(List<String> list) {
-        this.mList = list;
+    public MessageAdapter(View headView) {
+        this.mHeadView = headView;
+        mList.add("testtestest11111111111111111111111");
+        mList.add("testtestest222222222222222222222222222222222222222222222222222222222222");
+        mList.add("testtestest333333333333333333333333333333333333333333333333333333333333333333333333333");
+    }
+
+    public void flush(List<String> list, boolean isFlush) {
+        if (isFlush) {
+            mList.clear();
+        }
+        if (list != null) {
+            mList.addAll(list);
+        }
+        super.notifyDataSetChanged();
     }
 
     //item点击回调
@@ -46,62 +56,82 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         mOnItemClickListener = onItemClickListener;
     }
 
+    //脚布局点击回调
+    private OnFooterListener mOnFooterListener;
+
+    public void setOnFooterListener(OnFooterListener onFooterListener) {
+        this.mOnFooterListener = onFooterListener;
+    }
+
+    public interface OnFooterListener {
+        void startListener();
+
+        void endListener();
+
+        void runing();
+    }
+
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == TYPE_ITEM) {
-            return new ItemViewHolder(LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.item_message, parent, false));
+            return new MyViewHolder(View.inflate(parent.getContext(),
+                    R.layout.item_message, null));
         } else if (viewType == TYPE_FOOT) {
-            return new FootViewHoolder(LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.item_message_foot, parent, false));
+            return new MyViewHolder(View.inflate(parent.getContext(),
+                    R.layout.item_message_foot, null));
+        } else if (viewType == TYPE_HEAD) {
+            return new MyViewHolder(mHeadView);
         }
         return null;
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(final MyViewHolder holder, int position) {
         if (getItemViewType(position) == TYPE_ITEM) {
-            ((ItemViewHolder) holder).Title.setText("");
-            ((ItemViewHolder) holder).Date.setText("");
-            ((ItemViewHolder) holder).Details.setText("");
+            holder.Title.setText("title");
+            holder.Date.setText("1993-07-19");
+            holder.Details.setText(mList.get(position));
             if (mOnItemClickListener != null) {
-                ((ItemViewHolder) holder).itemView.setOnClickListener(new View.OnClickListener() {
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        mOnItemClickListener.OnItemClick("test String");
+                        //                        mOnItemClickListener.OnItemClick("test String");
+                        Logger.d("setonClickListener");
                     }
                 });
 
-            } else if (mList.size() >= 10) {
-                FootViewHoolder footerViewHolder = (FootViewHoolder) holder;
-                footerViewHolder.mTvMessageFoot.setText(R.string.loading);
-                if (mOnUpPull != null) {
-                    mOnUpPull.upPullLoad(mList.size());
+            } else if (getItemViewType(position) == TYPE_FOOT) {
+                if (mFlag) {
+                    holder.itemView.findViewById(R.id.skv_message_foot_load).setVisibility(View.GONE);
+                    holder.itemView.findViewById(R.id.v_message_foot).setVisibility(View.GONE);
+                    TextView tv = (TextView) holder.itemView.findViewById(R.id.tv_message_foot_load);
+                    tv.setText("没有更多数据！");
+                    return;
+                }
+                if (mOnFooterListener != null) {
+                    mOnFooterListener.startListener();
                 }
             }
+
         }
     }
 
-    //上拉加载回调
-    public interface OnUpPull {
-        void upPullLoad(int size);
-    }
-
-    private OnUpPull mOnUpPull;
-
-    public void setOnUpPull(OnUpPull onUpPull) {
-        mOnUpPull = onUpPull;
-    }
 
     @Override
     public int getItemCount() {
-        //添加脚布局
-        return mList.size() == 0 ? 0 : mList.size() + 1;
+        return mList.size() + counts;
+    }
+
+    public void isData() {
+        mFlag = mFlag;
+        super.notifyDataSetChanged();
     }
 
     @Override
     public int getItemViewType(int position) {
-        if (position + 1 == getItemCount()) {
+        if (position == 0) {
+            return TYPE_HEAD;
+        } else if (position + counts == getItemCount()) {
             return TYPE_FOOT;
         } else {
             return TYPE_ITEM;
@@ -109,29 +139,25 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
 
-    public class ItemViewHolder extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.tv_item_message_title)
-        TextView Title;
-        @Bind(R.id.tv_item_message_date)
-        TextView Date;
-        @Bind(R.id.tv_item_message_details)
-        TextView Details;
+        public TextView Title;
+        public TextView Date;
+        public TextView Details;
 
-        public ItemViewHolder(View itemView) {
+//        @Bind(R.id.tv_item_message_title)
+//        TextView Title;
+//        @Bind(R.id.tv_item_message_date)
+//        TextView Date;
+//        @Bind(R.id.tv_item_message_details)
+//        TextView Details;
+
+        public MyViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(this, itemView);
-        }
-    }
-
-    public class FootViewHoolder extends RecyclerView.ViewHolder {
-
-        @Bind(R.id.tv_message_foot)
-        public TextView mTvMessageFoot;
-
-        public FootViewHoolder(View itemView) {
-            super(itemView);
-            ButterKnife.bind(this, itemView);
+//          ButterKnife.bind(this, itemView);
+            Title = (TextView) itemView.findViewById(R.id.tv_item_message_title);
+            Date = (TextView) itemView.findViewById(R.id.tv_item_message_date);
+            Details = (TextView) itemView.findViewById(R.id.tv_item_message_details);
         }
     }
 }

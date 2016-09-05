@@ -1,21 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:gravity="center"
-              android:orientation="horizontal">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-    <ProgressBar
-        android:id="@+id/pb_message_foot"
-        android:layout_width="25dp"
-        android:layout_height="25dp"/>
-
-    <TextView
-        android:id="@+id/tv_message_foot"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="Loading..."
-        android:textColor="@color/md_grey_600_color_code"
-        android:textSize="15sp"/>
-</LinearLayout>
+        android:gravity="center"
+        android:padding="15dp">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"/>
+
+        <com.github.ybq.android.spinkit.SpinKitView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/skv_message_foot_load"
+            style="@style/SpinKitView.Large.WanderingCubes"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="20dp"
+            android:layout_toLeftOf="@+id/v_message_foot"
+            app:SpinKit_Color="@color/colorPrimary"/>
+
+        <View
+            android:id="@+id/v_message_foot"
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:layout_centerInParent="true"/>
+
+        <TextView
+            android:id="@+id/tv_message_foot_load"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_toRightOf="@+id/v_message_foot"
+            android:text="加载更多"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20sp"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>
