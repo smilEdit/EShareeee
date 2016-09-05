@@ -147,11 +147,18 @@
             android:hint="choose a type"/>
     </LinearLayout>
 
-    <TextView
+    <RelativeLayout
+
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:drawableRight="@mipmap/ic_launcher"
-        android:gravity="center"
-        android:text="finish"/>
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:drawableRight="@mipmap/ic_launcher"
+            android:gravity="center"
+            android:text="finish"/>
+    </RelativeLayout>
 </LinearLayout>

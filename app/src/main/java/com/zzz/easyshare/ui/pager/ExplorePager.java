@@ -26,7 +26,7 @@ public class ExplorePager extends BasePager {
      */
     public ExplorePager(Activity context) {
         super(context);
-        setNoPagerState(true);
+        setNoPagerState(false);
     }
 
     @Override
@@ -42,9 +42,9 @@ public class ExplorePager extends BasePager {
 
     private void initConvenient() {
         mConvenientBanner = (ConvenientBanner) mView.findViewById(R.id.convenient);
-        List<Integer> localImages = new ArrayList<>();
+        List<String> localImages = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
-            localImages.add(R.mipmap.ic_launcher);
+            localImages.add("http://img3.imgtn.bdimg.com/it/u=2945870806,1886591151&fm=21&gp=0.jpg");
         }
         mConvenientBanner.setPages(
                 new CBViewHolderCreator<LocalImageHolderView>() {
@@ -55,7 +55,8 @@ public class ExplorePager extends BasePager {
                 }, localImages)
                 .setPageIndicator(new int[]{R.drawable.head_vp_shape, R.drawable.head_vp_shape_wh})
                 .setCanLoop(true);
-        mConvenientBanner.startTurning(1500);
+
+        mConvenientBanner.startTurning(2000);
     }
 
     @Override

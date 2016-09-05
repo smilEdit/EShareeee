@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -27,11 +28,11 @@
             android:text="phone number:"/>
 
         <EditText
-            android:hint="phone number"
             android:id="@+id/tv_regist_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"/>
+            android:layout_gravity="center_horizontal"
+            android:hint="phone number"/>
     </LinearLayout>
 
     <LinearLayout
@@ -47,11 +48,11 @@
             android:text="nickname:"/>
 
         <EditText
-            android:hint="nickname"
             android:id="@+id/tv_regist_nickname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"/>
+            android:layout_gravity="center_horizontal"
+            android:hint="nickname"/>
     </LinearLayout>
 
     <LinearLayout
@@ -93,12 +94,12 @@
             android:text="password"/>
 
         <EditText
-            android:inputType="textPassword"
             android:id="@+id/tv_regist_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:hint="password"/>
+            android:hint="password"
+            android:inputType="textPassword"/>
     </LinearLayout>
 
     <Button
@@ -109,18 +110,20 @@
         android:layout_marginTop="20dp"
         android:text="regist"/>
 
-    <LinearLayout
-        android:gravity="right"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="right">
+
         <TextView
-            android:gravity="center"
-            android:drawableRight="@mipmap/ic_launcher"
-            android:clickable="true"
             android:id="@+id/tv_regist_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_alignParentBottom="true"
+            android:clickable="true"
+            android:drawableRight="@mipmap/ic_launcher"
+            android:gravity="center"
             android:text="login"/>
-    </LinearLayout>
+    </RelativeLayout>
 </LinearLayout>

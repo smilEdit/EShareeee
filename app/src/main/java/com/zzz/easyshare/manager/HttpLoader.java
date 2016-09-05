@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.google.gson.Gson;
 import com.zzz.easyshare.AppConfig;
 import com.zzz.easyshare.api.NetLoader;
 import com.zzz.easyshare.api.URL;
@@ -90,8 +91,11 @@ public class HttpLoader {
                     return null;
                 } else {
                     //// TODO: 2016/8/31
-                    return null;
+                    Gson gson = new Gson();
+
+                    return gson.fromJson(result,clazz);
 //                    return XmlUtils.toBean(clazz, result.getBytes());
+
                 }
             } catch (IOException e) {
                 e.printStackTrace();
