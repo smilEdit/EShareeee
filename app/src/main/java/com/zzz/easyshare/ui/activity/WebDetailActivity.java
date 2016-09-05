@@ -3,6 +3,7 @@ package com.zzz.easyshare.ui.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -36,18 +37,20 @@ public class WebDetailActivity extends AppCompatActivity {
     private void initData() {
         Intent intent = getIntent();
         String url = intent.getStringExtra("address");
+        WebSettings settings = mWvWebdetailContent.getSettings();
         // 设置WevView要显示的网页
 //        mWvWebdetailContent.loadDataWithBaseURL(null, url, "text/html", "utf-8",
 //                null);
+        settings.setPluginState(WebSettings.PluginState.ON);
         mWvWebdetailContent.loadUrl(url);
         //自适应屏幕缩放
-        mWvWebdetailContent.getSettings().setUseWideViewPort(true);
-        mWvWebdetailContent.getSettings().setLoadWithOverviewMode(true);
+        settings.setUseWideViewPort(true);
+        settings.setLoadWithOverviewMode(true);
         //手势缩放
-        mWvWebdetailContent.getSettings().setSupportZoom(true);
-        mWvWebdetailContent.getSettings().setBuiltInZoomControls(true);
+        settings.setSupportZoom(true);
+        settings.setBuiltInZoomControls(true);
 //        mWvWebdetailContent.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
-        mWvWebdetailContent.getSettings().setJavaScriptEnabled(true); //设置支持Javascript
+        settings.setJavaScriptEnabled(true); //设置支持Javascript
         mWvWebdetailContent.requestFocus(); //触摸焦点起作用.如果不设置，则在点击网页文本输入框时，不能弹出软键盘及不响应其他的一些事件。
         // mWvWebdetailContent.getSettings().setBuiltInZoomControls(true); //页面添加缩放按钮
         // mWvWebdetailContent.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);   //取消滚动条

@@ -20,7 +20,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHo
     public static final int TYPE_HEAD = 0;
     public static final int TYPE_ITEM = 1;
     public static final int TYPE_FOOT = 2;
-    public static final int counts    = 1;
+    public static final int counts    = 2;
     private boolean mFlag;
     private View    mHeadView;
 
@@ -30,9 +30,15 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHo
 
     public MessageAdapter(View headView) {
         this.mHeadView = headView;
-        mList.add("testtestest11111111111111111111111");
+        mList.add("testtestest111111111111111111111111111111111111111111111111");
         mList.add("testtestest222222222222222222222222222222222222222222222222222222222222");
         mList.add("testtestest333333333333333333333333333333333333333333333333333333333333333333333333333");
+        mList.add("testtestest44444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444");
+        mList.add("testtestest55555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555");
+        mList.add("66666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666");
+        mList.add("66666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666");
+        mList.add("66666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666");
+        mList.add("66666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666");
     }
 
     public void flush(List<String> list, boolean isFlush) {
@@ -90,7 +96,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHo
         if (getItemViewType(position) == TYPE_ITEM) {
             holder.Title.setText("title");
             holder.Date.setText("1993-07-19");
-            holder.Details.setText(mList.get(position));
+            holder.Details.setText(mList.get(position-1));
             if (mOnItemClickListener != null) {
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -122,8 +128,8 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHo
         return mList.size() + counts;
     }
 
-    public void isData() {
-        mFlag = mFlag;
+    public void isData(boolean flag) {
+        mFlag = flag;
         super.notifyDataSetChanged();
     }
 
@@ -131,7 +137,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHo
     public int getItemViewType(int position) {
         if (position == 0) {
             return TYPE_HEAD;
-        } else if (position + counts == getItemCount()) {
+        } else if (position + 1  == getItemCount()) {
             return TYPE_FOOT;
         } else {
             return TYPE_ITEM;

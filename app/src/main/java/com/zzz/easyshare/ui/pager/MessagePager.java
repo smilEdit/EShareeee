@@ -69,33 +69,22 @@ public class MessagePager extends BasePager implements View.OnClickListener {
         mRecyclerView.setAdapter(mMessageAdapter);
         //设置布局管理器
         mRecyclerView.setLayoutManager(mLayoutManager);
+        //添加分割线
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getParentActivity(), 1));
         mRefreshLayout.setColorSchemeColors(Color.parseColor("#40a953"));
         initHeadView();
-//        initListener();
+        initListener();
         if (mList == null) {
             mList = new ArrayList<>();
         }
         return mView;
     }
 
-//    private void initListener() {
-//        mSrlMessageRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-//            @Override
-//            public void onRefresh() {
-//                refresh();
-//            }
-//        });
-//    }
-//
-//    private void refresh() {
-//        Utils.runOnUIThread(new Runnable() {
-//            @Override
-//            public void run() {
-//
-//            }
-//        });
-//    }
+    //初始化刷新
+    private void initListener() {
+
+    }
+
 
     //头布局初始化
     private void initHeadView() {
@@ -113,9 +102,7 @@ public class MessagePager extends BasePager implements View.OnClickListener {
         mList.clear();
         mList.add("testtestestestestestestesttestestesttest");
         mList.add("testtestestestestestestesttestestesttest");
-        mList.add("testtestestestestestestesttestestesttest");
-        mList.add("testtestestestestestestesttestestesttest");
-        mList.add("testtestestestestestestesttestestesttest");
+
         if (mRefreshLayout.isRefreshing()) {
             Utils.runOnUIThread(new Runnable() {
                 @Override
@@ -137,17 +124,6 @@ public class MessagePager extends BasePager implements View.OnClickListener {
     protected void onUiRefresh(Object o) {
         super.onUiRefresh(o);
     }
-
-//    @OnClick({R.id.iv_message_head})
-//    public void onClick(View view) {
-//        switch (view.getId()) {
-//            case R.id.iv_message_head:
-//                String url = "";
-//                toDetailWeb(url);
-//                break;
-//        }
-//    }
-
 
 
     private void toDetailWeb(String url) {

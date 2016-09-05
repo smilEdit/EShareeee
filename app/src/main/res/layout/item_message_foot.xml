@@ -14,10 +14,11 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"/>
 
+<!--            style="@style/SpinKitView.Large.WanderingCubes"-->
         <com.github.ybq.android.spinkit.SpinKitView
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/skv_message_foot_load"
-            style="@style/SpinKitView.Large.WanderingCubes"
+            style="@style/SpinKitView.Wave"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginRight="20dp"

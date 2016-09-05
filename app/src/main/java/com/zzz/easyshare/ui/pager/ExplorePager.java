@@ -43,9 +43,14 @@ public class ExplorePager extends BasePager {
     private void initConvenient() {
         mConvenientBanner = (ConvenientBanner) mView.findViewById(R.id.convenient);
         List<String> localImages = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            localImages.add("http://img3.imgtn.bdimg.com/it/u=2945870806,1886591151&fm=21&gp=0.jpg");
-        }
+
+        localImages.add("http://img3.imgtn.bdimg.com/it/u=2945870806,1886591151&fm=21&gp=0.jpg");
+        localImages.add("https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1778229674,1884213286&fm=21&gp=0.jpg");
+        localImages.add("https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2873929560,804337044&fm=21&gp=0.jpg");
+        localImages.add("http://img3.imgtn.bdimg.com/it/u=1691364090,593751885&fm=11&gp=0.jpg");
+
+
+        //设置轮播图
         mConvenientBanner.setPages(
                 new CBViewHolderCreator<LocalImageHolderView>() {
                     @Override
