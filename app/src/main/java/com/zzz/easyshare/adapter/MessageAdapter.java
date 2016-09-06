@@ -5,7 +5,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.orhanobut.logger.Logger;
 import com.zzz.easyshare.R;
 
 import java.util.ArrayList;
@@ -20,25 +19,17 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHo
     public static final int TYPE_HEAD = 0;
     public static final int TYPE_ITEM = 1;
     public static final int TYPE_FOOT = 2;
-    public static final int counts    = 2;
-    private boolean mFlag;
+    public static final int counts    = 1;
+    private boolean mFlag ;
     private View    mHeadView;
 
     private List<String> mList = new ArrayList<>();
     //    private List<Message> list = new ArrayList<>();
 
 
-    public MessageAdapter(View headView) {
+    public MessageAdapter(View headView, List<String> list) {
         this.mHeadView = headView;
-        mList.add("testtestest111111111111111111111111111111111111111111111111");
-        mList.add("testtestest222222222222222222222222222222222222222222222222222222222222");
-        mList.add("testtestest333333333333333333333333333333333333333333333333333333333333333333333333333");
-        mList.add("testtestest44444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444");
-        mList.add("testtestest55555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555");
-        mList.add("66666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666");
-        mList.add("66666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666");
-        mList.add("66666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666");
-        mList.add("66666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666");
+        this.mList = list;
     }
 
     public void flush(List<String> list, boolean isFlush) {
@@ -62,7 +53,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHo
         mOnItemClickListener = onItemClickListener;
     }
 
-    //脚布局点击回调
+    //脚布局回调
     private OnFooterListener mOnFooterListener;
 
     public void setOnFooterListener(OnFooterListener onFooterListener) {
@@ -95,18 +86,19 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHo
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         if (getItemViewType(position) == TYPE_ITEM) {
             holder.Title.setText("title");
-            holder.Date.setText("1993-07-19");
-            holder.Details.setText(mList.get(position-1));
+            holder.Date.setText("1993-07-19:::::::"+position);
+            holder.Details.setText(mList.get(position - counts));
             if (mOnItemClickListener != null) {
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        //                        mOnItemClickListener.OnItemClick("test String");
-                        Logger.d("setonClickListener");
+                        //  mOnItemClickListener.OnItemClick("test String");
+
                     }
                 });
 
-            } else if (getItemViewType(position) == TYPE_FOOT) {
+            } else if (getItemViewType(position+2)  == TYPE_FOOT) {
+
                 if (mFlag) {
                     holder.itemView.findViewById(R.id.skv_message_foot_load).setVisibility(View.GONE);
                     holder.itemView.findViewById(R.id.v_message_foot).setVisibility(View.GONE);
@@ -137,7 +129,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHo
     public int getItemViewType(int position) {
         if (position == 0) {
             return TYPE_HEAD;
-        } else if (position + 1  == getItemCount()) {
+        } else if (position + counts== getItemCount()) {
             return TYPE_FOOT;
         } else {
             return TYPE_ITEM;
@@ -151,16 +143,9 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHo
         public TextView Date;
         public TextView Details;
 
-//        @Bind(R.id.tv_item_message_title)
-//        TextView Title;
-//        @Bind(R.id.tv_item_message_date)
-//        TextView Date;
-//        @Bind(R.id.tv_item_message_details)
-//        TextView Details;
 
         public MyViewHolder(View itemView) {
             super(itemView);
-//          ButterKnife.bind(this, itemView);
             Title = (TextView) itemView.findViewById(R.id.tv_item_message_title);
             Date = (TextView) itemView.findViewById(R.id.tv_item_message_date);
             Details = (TextView) itemView.findViewById(R.id.tv_item_message_details);
