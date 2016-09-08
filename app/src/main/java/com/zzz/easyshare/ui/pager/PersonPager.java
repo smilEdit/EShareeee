@@ -16,6 +16,7 @@ import com.zzz.easyshare.utils.ZToast;
 
 import butterknife.Bind;
 import butterknife.OnClick;
+import tyrantgit.explosionfield.ExplosionField;
 
 /**
  * @创建者 zlf
@@ -48,6 +49,7 @@ public class PersonPager extends BasePager {
     @Bind(R.id.iv_person_help)
     ImageView mIvPersonHelp;
     private View mView;
+    private ExplosionField mExplosionField;
 
     /**
      * 构造方法
@@ -62,6 +64,7 @@ public class PersonPager extends BasePager {
     @Override
     protected View OnCreateView() {
         mView = View.inflate(getParentActivity(), R.layout.pager_person, null);
+        mExplosionField = ExplosionField.attach2Window(getParentActivity());
         return mView;
     }
 
@@ -81,30 +84,39 @@ public class PersonPager extends BasePager {
             case R.id.tv_person_signature:
                 break;
             case R.id.iv_person_share:
+                mExplosionField.explode(view);
                 toMyShare();
                 break;
             case R.id.iv_person_tags:
+                mExplosionField.explode(view);
                 toMyTags();
                 break;
             case R.id.iv_person_order:
+                mExplosionField.explode(view);
                 toMyOrder();
                 break;
             case R.id.iv_person_info:
+                mExplosionField.explode(view);
                 toPersonalInfo();
                 break;
             case R.id.iv_person_message_setting:
+                mExplosionField.explode(view);
                 toMesSetting();
                 break;
             case R.id.iv_person_password_setting:
+                mExplosionField.explode(view);
                 toPswSetting();
                 break;
             case R.id.iv_person_eshare:
+                mExplosionField.explode(view);
                 toAboutEShare();
                 break;
             case R.id.iv_person_feedback:
+                mExplosionField.explode(view);
                 toFeedback();
                 break;
             case R.id.iv_person_help:
+                mExplosionField.explode(view);
                 toHelp();
                 break;
         }
@@ -160,6 +172,7 @@ public class PersonPager extends BasePager {
     }
 
     private void changeAvatar() {
+
         ZToast.showShortToast(getParentActivity(),"changeAvatar");
     }
 }

@@ -35,6 +35,12 @@
         </activity>
         <activity android:name=".ui.activity.FeedbackActivity">
         </activity>
+        <activity android:name=".ui.activity.GoodsActivity">
+        </activity>
+        <activity android:name=".ui.activity.OrdersActivity">
+        </activity>
+        <activity android:name=".ui.activity.PayActivity">
+        </activity>
     </application>
 
 </manifest>
