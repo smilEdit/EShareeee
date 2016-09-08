@@ -1,11 +1,17 @@
 package com.zzz.easyshare.ui.pager;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.zzz.easyshare.R;
+import com.zzz.easyshare.ui.activity.FeedbackActivity;
+import com.zzz.easyshare.ui.activity.MessagesettingActivity;
+import com.zzz.easyshare.ui.activity.MyorderActivity;
+import com.zzz.easyshare.ui.activity.MyshareActivity;
+import com.zzz.easyshare.ui.activity.PersonalInfoActivity;
 import com.zzz.easyshare.utils.ZToast;
 
 import butterknife.Bind;
@@ -105,8 +111,9 @@ public class PersonPager extends BasePager {
     }
 
     private void toMesSetting() {
-        ZToast.showShortToast(getParentActivity(),"toMesSetting");
-
+        Intent intent = new Intent(getParentActivity(), MessagesettingActivity.class);
+        //        intent.putExtra();
+        getParentActivity().startActivity(intent);
     }
 
     private void toPswSetting() {
@@ -120,8 +127,7 @@ public class PersonPager extends BasePager {
     }
 
     private void toFeedback() {
-        ZToast.showShortToast(getParentActivity(),"toFeedback");
-
+        getParentActivity().startActivity(new Intent(getParentActivity(), FeedbackActivity.class));
     }
 
     private void toHelp() {
@@ -130,13 +136,16 @@ public class PersonPager extends BasePager {
     }
 
     private void toPersonalInfo() {
-        ZToast.showShortToast(getParentActivity(),"toPersonalInfo");
+        Intent intent = new Intent(getParentActivity(), PersonalInfoActivity.class);
+        //        intent.putExtra();
+        getParentActivity().startActivity(intent);
 
     }
 
     private void toMyOrder() {
-        ZToast.showShortToast(getParentActivity(),"toMyOrder");
-
+        Intent intent = new Intent(getParentActivity(), MyorderActivity.class);
+        //        intent.putExtra();
+        getParentActivity().startActivity(intent);
     }
 
     private void toMyTags() {
@@ -145,8 +154,9 @@ public class PersonPager extends BasePager {
     }
 
     private void toMyShare() {
-        ZToast.showShortToast(getParentActivity(),"toMyShare");
-
+        Intent intent = new Intent(getParentActivity(), MyshareActivity.class);
+//        intent.putExtra();
+        getParentActivity().startActivity(intent);
     }
 
     private void changeAvatar() {

@@ -48,7 +48,8 @@ public class WebDetailActivity extends AppCompatActivity {
         settings.setLoadWithOverviewMode(true);
         //手势缩放
         settings.setSupportZoom(true);
-        settings.setBuiltInZoomControls(true);
+        //不显示放大缩小
+        settings.setBuiltInZoomControls(false);
 //        mWvWebdetailContent.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
         settings.setJavaScriptEnabled(true); //设置支持Javascript
         mWvWebdetailContent.requestFocus(); //触摸焦点起作用.如果不设置，则在点击网页文本输入框时，不能弹出软键盘及不响应其他的一些事件。

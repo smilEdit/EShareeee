@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.zzz.easyshare">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -25,6 +25,15 @@
         <activity android:name=".ui.activity.RegistActivity">
         </activity>
         <activity android:name=".ui.activity.WebDetailActivity">
+        </activity>
+        <activity android:name=".ui.activity.MyshareActivity"/>
+        <activity android:name=".ui.activity.MessagesettingActivity">
+        </activity>
+        <activity android:name=".ui.activity.MyorderActivity">
+        </activity>
+        <activity android:name=".ui.activity.PersonalInfoActivity">
+        </activity>
+        <activity android:name=".ui.activity.FeedbackActivity">
         </activity>
     </application>
 

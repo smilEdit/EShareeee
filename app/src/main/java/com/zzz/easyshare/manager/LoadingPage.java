@@ -22,24 +22,6 @@ import java.util.List;
 public abstract class LoadingPage<E> extends FrameLayout {
 
     private static final String TAG = "LoadingPage";
-//    private static final Hashtable<String,Typeface> cache = new Hashtable<String, Typeface>();
-//
-//    public static Typeface get(Context c, String assetPath) {
-//        synchronized (cache) {
-//            if (!cache.containsKey(assetPath)) {
-//                try {
-//                    Typeface t = Typeface.createFromAsset(c.getAssets(),
-//                            assetPath);
-//                    cache.put(assetPath, t);
-//                } catch (Exception e) {
-//                    Log.e(TAG, "Could not get typeface '" + assetPath
-//                            + "' because " + e.getMessage());
-//                    return null;
-//                }
-//            }
-//            return cache.get(assetPath);
-//        }
-//    }
 
     private PageState mCurrentState = PageState.STATE_LOADING; //表示界面当前的state，默认是加载中
     /**
@@ -128,7 +110,6 @@ public abstract class LoadingPage<E> extends FrameLayout {
         if (mLoadingView == null) {
             mLoadingView = View.inflate(getContext(), R.layout.page_loading, null);
             mIvLoadingImg = (ImageView) mLoadingView.findViewById(R.id.iv_loading);
-//            Glide.with(getContext()).load(R.mipmap.loading_gif).into(mIvLoadingImg);
             ZImageLoader.setImg(getContext(),R.mipmap.loading_gif,mIvLoadingImg);
         }
         addView(mLoadingView);
@@ -144,7 +125,6 @@ public abstract class LoadingPage<E> extends FrameLayout {
                 @Override
                 public void onClick(View v) {
                     mCurrentState = PageState.STATE_LOADING;
-//                    Glide.with(getContext()).load(R.mipmap.loading_gif).into(mIvLoadingImg);
                     ZImageLoader.setImg(getContext(),R.mipmap.loading_gif,mIvLoadingImg);
                     showPage();
                     initData();
@@ -191,13 +171,11 @@ public abstract class LoadingPage<E> extends FrameLayout {
                 break;
             case STATE_ERROR:  //加载失败
                 mErrorView.setVisibility(VISIBLE);
-//                Glide.clear(mIvLoadingImg);
                 ZImageLoader.clear(mIvLoadingImg);
                 break;
             case STATE_SUCCESS:  //加载成功
                 mSuccessView.setVisibility(VISIBLE);
                 ZImageLoader.clear(mIvLoadingImg);
-//                Glide.clear(mIvLoadingImg);
                 break;
         }
     }

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.zzz.easyshare.ui.activity.PersonalInfoActivity">
+
+    <TextView
+        android:id="@+id/tv_personalInfo_mobile"
+        style="@style/tv_image"
+        android:text="mobile"/>
+
+    <TextView
+        android:id="@+id/tv_personalInfo_address"
+        style="@style/tv_image"
+        android:text="address"/>
+
+    <TextView
+        android:id="@+id/tv_personalInfo_gender"
+        style="@style/tv_image"
+        android:text="gender"/>
+</LinearLayout>
