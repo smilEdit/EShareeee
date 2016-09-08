@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.zzz.easyshare.R;
 import com.zzz.easyshare.adapter.HomePagerAdapter;
 import com.zzz.easyshare.bean.HomeTestData;
+import com.zzz.easyshare.utils.ZSnack;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +22,7 @@ import butterknife.Bind;
  * @创建者 zlf
  * @创建时间 2016/8/31 14:51
  */
-public class HomePager extends BasePager {
+public class HomePager extends BasePager implements SwipeRefreshLayout.OnRefreshListener {
 
 
     @Bind(R.id.tv_home_city)
@@ -82,8 +83,8 @@ public class HomePager extends BasePager {
             //设置Adapter
             mRvHomeGoods.setAdapter(mAdapter);
             //添加分割线
-
 //            mRvHomeGoods.addItemDecoration(new DividerItemDecoration(getParentActivity(), 16));
+            mSrlHomeRefresh.setOnRefreshListener(this);
         } else {
             mAdapter.notifyDataSetChanged();
         }
@@ -92,5 +93,17 @@ public class HomePager extends BasePager {
     @Override
     public String getTitleName() {
         return "Home";
+    }
+
+    @Override
+    public void onRefresh() {
+        downRefresh();
+        mSrlHomeRefresh.setRefreshing(false);
+    }
+
+    private void downRefresh() {
+        mList.add(0,new HomeTestData(R.drawable.test666, "this is a test title5"));
+        ZSnack.showSnackShort(mRvHomeGoods,"咻咻咻咻咻咻~");
+        mAdapter.notifyDataSetChanged();
     }
 }
