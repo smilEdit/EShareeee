@@ -20,7 +20,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHo
     public static final int TYPE_ITEM = 1;
     public static final int TYPE_FOOT = 2;
     public static final int counts    = 1;
-    private boolean mFlag ;
+    private boolean mFlag;
     private View    mHeadView;
 
     private List<String> mList = new ArrayList<>();
@@ -86,7 +86,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHo
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         if (getItemViewType(position) == TYPE_ITEM) {
             holder.Title.setText("title");
-            holder.Date.setText("1993-07-19:::::::"+position);
+            holder.Date.setText("1993-07-19:::::::" + position);
             holder.Details.setText(mList.get(position - counts));
             if (mOnItemClickListener != null) {
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -97,7 +97,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHo
                     }
                 });
 
-            } else if (getItemViewType(position+1)  == TYPE_FOOT) {
+            } else if (getItemViewType(position + 1) == TYPE_FOOT) {
 
                 if (mFlag) {
                     holder.itemView.findViewById(R.id.skv_message_foot_load).setVisibility(View.GONE);
@@ -129,7 +129,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHo
     public int getItemViewType(int position) {
         if (position == 0) {
             return TYPE_HEAD;
-        } else if (position + counts== getItemCount()) {
+        } else if (position + counts == getItemCount()) {
             return TYPE_FOOT;
         } else {
             return TYPE_ITEM;

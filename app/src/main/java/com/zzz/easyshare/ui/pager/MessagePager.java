@@ -28,15 +28,9 @@ import java.util.List;
  */
 public class MessagePager extends BasePager implements View.OnClickListener {
 
-    //    @Bind(R.id.rv_pager_message)
-    //    RecyclerView       mRvPagerMessage;
-    //    @Bind(R.id.srl_message_refresh)
-    //    SwipeRefreshLayout mSrlMessageRefresh;
-    //    @Bind(R.id.iv_message_head)
-    //    ImageView          mIvMessageHead;
-
     //测试数据
     private List<String>        mList;
+
     private View                mView;
     private MessageAdapter      mMessageAdapter;
     private LinearLayoutManager mLayoutManager;

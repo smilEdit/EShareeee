@@ -108,13 +108,4 @@ public class ExplorePager extends BasePager {
                     break;
             }
         }*/
-    //    class ExploreAdapter extends CommonAdapter<String> {
-    //        public ExploreAdapter(Context context, int layoutId, List<String> datas) {
-    //            super(context, layoutId, datas);
-    //        }
-    //
-    //        @Override
-    //        protected void convert(ViewHolder viewHolder, String item, int position) {
-    //        }
-    //    }
 }
