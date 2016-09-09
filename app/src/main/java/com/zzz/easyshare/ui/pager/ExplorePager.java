@@ -1,23 +1,43 @@
 package com.zzz.easyshare.ui.pager;
 
 import android.app.Activity;
+import android.os.Handler;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Spinner;
 
-import com.bigkoo.convenientbanner.ConvenientBanner;
-import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
+import com.zhy.adapter.recyclerview.wrapper.LoadMoreWrapper;
 import com.zzz.easyshare.R;
-import com.zzz.easyshare.widget.LocalImageHolderView;
+import com.zzz.easyshare.adapter.ExploreRvAdapter;
+import com.zzz.easyshare.utils.ZSnack;
+import com.zzz.easyshare.widget.DividerItemDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import butterknife.Bind;
 
 /**
  * @创建者 zlf
  * @创建时间 2016/8/31 14:53
  */
 public class ExplorePager extends BasePager {
-    private View             mView;
-    private ConvenientBanner mConvenientBanner;
+    @Bind(R.id.spinner_explore_types)
+    Spinner            mSpinnerExploreTypes;
+    @Bind(R.id.spinner_explore_sorting)
+    Spinner            mSpinnerExploreSorting;
+    @Bind(R.id.rv_explore)
+    RecyclerView       mRvExplore;
+    @Bind(R.id.srl_explore_refresh)
+    SwipeRefreshLayout mSrlExploreRefresh;
+
+    private View mView;
+
+    private List<String>            mList;
+    private ExploreRvAdapter        mExploreRvAdapter;
+    private LoadMoreWrapper<Object> mLoadMoreWrapper;
 
     /**
      * 构造方法
@@ -37,35 +57,64 @@ public class ExplorePager extends BasePager {
 
     private void initView() {
         mView = View.inflate(getParentActivity(), R.layout.pager_explore, null);
-        initConvenient();
     }
 
-    private void initConvenient() {
-        mConvenientBanner = (ConvenientBanner) mView.findViewById(R.id.convenient);
-        List<String> localImages = new ArrayList<>();
+    @Override
+    protected void onUiRefresh(Object o) {
 
-        localImages.add("http://img3.imgtn.bdimg.com/it/u=2945870806,1886591151&fm=21&gp=0.jpg");
-        localImages.add("https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1778229674,1884213286&fm=21&gp=0.jpg");
-        localImages.add("https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2873929560,804337044&fm=21&gp=0.jpg");
-        localImages.add("http://img3.imgtn.bdimg.com/it/u=1691364090,593751885&fm=11&gp=0.jpg");
+        mExploreRvAdapter = new ExploreRvAdapter(getParentActivity(), R.layout.item_explore, mList);
+        //设置布局管理器
+        mRvExplore.setLayoutManager(new LinearLayoutManager(getParentActivity()));
+        //设置分割线
+        mRvExplore.addItemDecoration(new DividerItemDecoration(getParentActivity(), 1));
 
+        mLoadMoreWrapper = new LoadMoreWrapper<>(mExploreRvAdapter);
+        mLoadMoreWrapper.setLoadMoreView(R.layout.item_message_foot);
+        mLoadMoreWrapper.setOnLoadMoreListener(new LoadMoreWrapper.OnLoadMoreListener() {
 
-        //设置轮播图
-        mConvenientBanner.setPages(
-                new CBViewHolderCreator<LocalImageHolderView>() {
+            @Override
+            public void onLoadMoreRequested() {
+                ZSnack.showSnackShort(mView, "加载中");
+                new Handler().postDelayed(new Runnable() {
                     @Override
-                    public LocalImageHolderView createHolder() {
-                        return new LocalImageHolderView();
+                    public void run() {
+                        ZSnack.showSnackShort(mView, "加载成功");
                     }
-                }, localImages)
-                .setPageIndicator(new int[]{R.drawable.head_vp_shape, R.drawable.head_vp_shape_wh})
-                .setCanLoop(true);
+                }, 1000);
+            }
+        });
 
-        mConvenientBanner.startTurning(2000);
+        mRvExplore.setAdapter(mLoadMoreWrapper);
+
     }
 
     @Override
     protected Object OnLoadNetData() {
-        return "";
+        if (mList == null) {
+            mList = new ArrayList<>();
+        }
+        for (int i = 0; i < 10; i++) {
+            mList.add("test test test test test");
+        }
+        return mList;
     }
+
+    /*    @OnClick({R.id.spinner_explore_types, R.id.spinner_explore_sorting})
+        public void onClick(View view) {
+            switch (view.getId()) {
+                case R.id.spinner_explore_types:
+                    break;
+                case R.id.spinner_explore_sorting:
+                    break;
+            }
+        }*/
+    //    class ExploreAdapter extends CommonAdapter<String> {
+    //        public ExploreAdapter(Context context, int layoutId, List<String> datas) {
+    //            super(context, layoutId, datas);
+    //        }
+    //
+    //        @Override
+    //        protected void convert(ViewHolder viewHolder, String item, int position) {
+    //        }
+    //    }
 }

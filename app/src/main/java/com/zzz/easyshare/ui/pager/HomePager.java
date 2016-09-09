@@ -62,13 +62,11 @@ public class HomePager extends BasePager implements SwipeRefreshLayout.OnRefresh
     @Override
     protected Object OnLoadNetData() {
         mList = new ArrayList<>();
-        for (int i = 0; i < 3; i++) {
-            mList.add(new HomeTestData("http://ww1.sinaimg.cn/large/7a8aed7bgw1ewgtp8kircj20ht0qodj0.jpg", "this is a test title1"));
-            mList.add(new HomeTestData("https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2243962948,2705986633&fm=116&gp=0.jpg", "this is a test title2"));
-            mList.add(new HomeTestData("http://ww3.sinaimg.cn/large/7a8aed7bgw1ew38eojcpzj20p010kwjr.jpg", "this is a test title3"));
-            mList.add(new HomeTestData("https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=137160088,3671401105&fm=116&gp=0.jpg", "this is a test title4"));
-            mList.add(new HomeTestData("http://ww1.sinaimg.cn/large/610dc034jw1f7lughzrjmj20u00k9jti.jpg", "this is a test title5"));
-        }
+        mList.add(new HomeTestData("http://ww1.sinaimg.cn/large/7a8aed7bgw1ewgtp8kircj20ht0qodj0.jpg", "this is a test title1"));
+        mList.add(new HomeTestData("https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2243962948,2705986633&fm=116&gp=0.jpg", "this is a test title2"));
+        mList.add(new HomeTestData("http://ww3.sinaimg.cn/large/7a8aed7bgw1ew38eojcpzj20p010kwjr.jpg", "this is a test title3"));
+        mList.add(new HomeTestData("https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=137160088,3671401105&fm=116&gp=0.jpg", "this is a test title4"));
+        mList.add(new HomeTestData("http://ww1.sinaimg.cn/large/610dc034jw1f7lughzrjmj20u00k9jti.jpg", "this is a test title5"));
         return mList;
     }
 
@@ -91,14 +89,14 @@ public class HomePager extends BasePager implements SwipeRefreshLayout.OnRefresh
                     super.onScrollStateChanged(recyclerView, newState);
                     if (newState == RecyclerView.SCROLL_STATE_IDLE && lastVisibleItemPositions[0] + 1 == mAdapter.getItemCount()) {
                         upRefresh();
-//                        mSrlHomeRefresh.setRefreshing(true);
-//                        new Handler().postDelayed(new Runnable() {
-//                            @Override
-//                            public void run() {
-//                                ZSnack.showSnackShort(mRvHomeGoods, "加载更多~");
-//                                mSrlHomeRefresh.setRefreshing(false);
-//                            }
-//                        }, 1000);
+                        //                        mSrlHomeRefresh.setRefreshing(true);
+                        //                        new Handler().postDelayed(new Runnable() {
+                        //                            @Override
+                        //                            public void run() {
+                        //                                ZSnack.showSnackShort(mRvHomeGoods, "加载更多~");
+                        //                                mSrlHomeRefresh.setRefreshing(false);
+                        //                            }
+                        //                        }, 1000);
                     }
                 }
 
@@ -123,8 +121,6 @@ public class HomePager extends BasePager implements SwipeRefreshLayout.OnRefresh
     }
 
 
-
-
     @Override
     public String getTitleName() {
         return "Home";
@@ -141,13 +137,16 @@ public class HomePager extends BasePager implements SwipeRefreshLayout.OnRefresh
             @Override
             public void run() {
                 //                HomeTestData data = getNetData();
-                HomeTestData data = new HomeTestData("http://ww4.sinaimg.cn/large/610dc034gw1ew5b4ri9mxj20ic0qoq4t.jpg", "this is a test 666");
-                if (data != null) {
-                    mList.add(data);
-                    mHandler.sendEmptyMessage(0);
-                } else {
-                    mHandler.sendEmptyMessage(2);
+
+                for (int i = 0; i < 8; i++) {
+                    mList.add(new HomeTestData("http://ww4.sinaimg.cn/large/610dc034gw1ew5b4ri9mxj20ic0qoq4t.jpg", "this is a test 666"));
                 }
+                mHandler.sendEmptyMessage(0);
+                //                if (data != null) {
+                //                    mHandler.sendEmptyMessage(0);
+                //                } else {
+                //                    mHandler.sendEmptyMessage(2);
+                //                }
             }
         }).start();
     }

@@ -116,11 +116,17 @@ public class MessagePager extends BasePager implements View.OnClickListener {
             public void run() {
                 if (i++ % 5 != 0) {
                     mList.add(getParentActivity().getString(R.string.justTest) + i + "++++");
+                    mList.add(getParentActivity().getString(R.string.justTest) + i + "++++");
+                    mList.add(getParentActivity().getString(R.string.justTest) + i + "++++");
+                    mList.add(getParentActivity().getString(R.string.justTest) + i + "++++");
+                    mList.add(getParentActivity().getString(R.string.justTest) + i + "++++");
+                    mList.add(getParentActivity().getString(R.string.justTest) + i + "++++");
+                    mList.add(getParentActivity().getString(R.string.justTest) + i + "++++");
+                    mList.add(getParentActivity().getString(R.string.justTest) + i + "++++");
                     mHandler.sendEmptyMessage(0);
                 } else {
                     mHandler.sendEmptyMessage(2);
                 }
-                SystemClock.sleep(2000);
             }
         }).start();
     }
@@ -160,7 +166,6 @@ public class MessagePager extends BasePager implements View.OnClickListener {
         for (int i = 0; i < 5; i++) {
             mList.add(getParentActivity().getString(R.string.justTest) + i);
         }
-        SystemClock.sleep(1000);
         return mList;
     }
 
@@ -218,6 +223,7 @@ public class MessagePager extends BasePager implements View.OnClickListener {
                     break;
                 case 2:
                     ZSnack.showSnackShort(mRefreshLayout, "已无更多数据");
+                    mMessageAdapter.isData(false);
                     break;
             }
         }

@@ -97,7 +97,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHo
                     }
                 });
 
-            } else if (getItemViewType(position+2)  == TYPE_FOOT) {
+            } else if (getItemViewType(position+1)  == TYPE_FOOT) {
 
                 if (mFlag) {
                     holder.itemView.findViewById(R.id.skv_message_foot_load).setVisibility(View.GONE);
