@@ -7,10 +7,10 @@ package com.zzz.easyshare.bean;
 public class HomeTestData {
 
 
-    private int    image;
+    private String    image;
     private String title;
 
-    public HomeTestData(int image, String title) {
+    public HomeTestData(String image, String title) {
         this.image = image;
         this.title = title;
     }
@@ -23,11 +23,11 @@ public class HomeTestData {
         this.title = title;
     }
 
-    public int getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(int image) {
+    public void setImage(String image) {
         this.image = image;
     }
 

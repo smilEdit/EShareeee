@@ -41,7 +41,8 @@ public class HomePagerAdapter extends RecyclerView.Adapter<HomePagerAdapter.Home
     @Override
     public void onBindViewHolder(HomePagerViewHolder holder, int position) {
         holder.mTvItemHomeTitle.setText(mList.get(position).getTitle());
-        holder.mIvItemHomeGoods.setImageResource(mList.get(position).getImage());
+//        holder.mIvItemHomeGoods.setImageResource(mList.get(position).getImage());
+        ZImageLoader.setImg(mContext,mList.get(position).getImage(),holder.mIvItemHomeGoods);
         ZImageLoader.setAvatar(mContext,"http://img3.imgtn.bdimg.com/it/u=1691364090,593751885&fm=11&gp=0.jpg",holder.mIvItemHomeUser);
     }
 
