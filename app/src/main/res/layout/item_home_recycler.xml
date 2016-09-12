@@ -6,6 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="2dp"
     android:clickable="true"
+    android:id="@+id/cv_home_goods"
     app:cardBackgroundColor="@color/md_white_color_code">
 
     <LinearLayout

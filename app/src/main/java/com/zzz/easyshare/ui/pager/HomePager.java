@@ -88,6 +88,7 @@ public class HomePager extends BasePager implements SwipeRefreshLayout.OnRefresh
                 public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                     super.onScrollStateChanged(recyclerView, newState);
                     if (newState == RecyclerView.SCROLL_STATE_IDLE && lastVisibleItemPositions[0] + 1 == mAdapter.getItemCount()) {
+                        System.out.println(111);
                         upRefresh();
                         //                        mSrlHomeRefresh.setRefreshing(true);
                         //                        new Handler().postDelayed(new Runnable() {
