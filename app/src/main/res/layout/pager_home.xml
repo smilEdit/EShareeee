@@ -32,17 +32,22 @@
                 android:gravity="center_vertical"
                 android:hint="search posts"/>
     </LinearLayout>
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/srl_home_refresh"
+    <!--<android.support.v4.widget.SwipeRefreshLayout-->
+        <!--android:id="@+id/srl_home_refresh"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
+        <!--<android.support.v7.widget.RecyclerView-->
+            <!--android:id="@+id/rv_home_goods"-->
+            <!--android:isScrollContainer="false"-->
+            <!--android:layout_width="match_parent"-->
+            <!--app:layout_behavior="@string/appbar_scrolling_view_behavior"-->
+            <!--android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>-->
+    <!--</android.support.v4.widget.SwipeRefreshLayout>-->
+    <!--放大招了-->
+    <com.malinskiy.superrecyclerview.SuperRecyclerView
+        android:id="@+id/rv_home_goods"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_home_goods"
-            android:isScrollContainer="false"
-            android:layout_width="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
-    </android.support.v4.widget.SwipeRefreshLayout>
+        android:layout_height="match_parent"></com.malinskiy.superrecyclerview.SuperRecyclerView>
 <!--    妹的 改需求了
         <com.zzz.easyshare.widget.PagerSlidingTabStrip
         android:id="@+id/slidingtab"

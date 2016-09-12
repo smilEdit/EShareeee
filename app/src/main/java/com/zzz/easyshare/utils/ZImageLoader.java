@@ -65,8 +65,12 @@ public class ZImageLoader {
         });
     }
 
-    public static void setImg(Context context, String url, ImageView imageView) {
+    public static void setImgp(Context context, String url, ImageView imageView) {
         Glide.with(context).load(url).into(imageView);
+    }
+
+    public static void setImg(Context context, String url, ImageView imageView) {
+        Glide.with(context).load(url).centerCrop().into(imageView);
     }
 
 

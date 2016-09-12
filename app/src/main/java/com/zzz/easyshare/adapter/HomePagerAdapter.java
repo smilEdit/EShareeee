@@ -24,29 +24,39 @@ import butterknife.ButterKnife;
  */
 public class HomePagerAdapter extends RecyclerView.Adapter<HomePagerAdapter.HomePagerViewHolder> {
 
-    public Context mContext;
-    private List<HomeTestData> mList;
+    public  Context             mContext;
+    private List<HomeTestData>  mList;
     private HomePagerViewHolder mHolder;
 
-    public HomePagerAdapter(List<HomeTestData> list,Context context) {
+    public HomePagerAdapter(List<HomeTestData> list, Context context) {
         this.mList = list;
         this.mContext = context;
     }
 
     @Override
     public HomePagerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view =   LayoutInflater.from(parent.getContext()).inflate(R.layout.item_home_recycler, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_home_recycler, parent, false);
         return new HomePagerViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(HomePagerViewHolder holder, int position) {
+    public void onBindViewHolder(final HomePagerViewHolder holder, int position) {
         this.mHolder = holder;
         holder.mTvItemHomeTitle.setText(mList.get(position).getTitle());
-        ZImageLoader.setImg(mContext,mList.get(position).getImage(), holder.mIvItemHomeGoods);
-//        Glide.with(mContext).load(mList.get(position).getImage()).into(holder.mIvItemHomeGoods);
-//        Picasso.with(mContext).load(mList.get(position).getImage()).into(holder.mIvItemHomeGoods);
-        ZImageLoader.setAvatar(mContext,"http://img3.imgtn.bdimg.com/it/u=1691364090,593751885&fm=11&gp=0.jpg", holder.mIvItemHomeUser);
+        ZImageLoader.setImgp(mContext, mList.get(position).getImage(), holder.mIvItemHomeGoods);
+        //        Glide.with(mContext).load(mList.get(position).getImage()).into(holder.mIvItemHomeGoods);
+        //        Picasso.with(mContext).load(mList.get(position).getImage()).into(holder.mIvItemHomeGoods);
+        //设置详细描述
+        //        holder.mTvItemHomeDetails.setText(mList.get(position).get);
+        ZImageLoader.setAvatar(mContext, "http://img3.imgtn.bdimg.com/it/u=1691364090,593751885&fm=11&gp=0.jpg", holder.mIvItemHomeUser);
+        if (mOnItemClickListener != null) {
+            holder.itemView.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view) {
+                    mOnItemClickListener.OnItemClick(view,holder.mTvItemHomeTitle);
+                }
+            });
+        }
     }
 
     @Override
@@ -54,7 +64,16 @@ public class HomePagerAdapter extends RecyclerView.Adapter<HomePagerAdapter.Home
         return mList.size();
     }
 
+    //条目点击回调
+    public interface OnItemClickListener{
+        void OnItemClick(View view, TextView title);
+    }
 
+    private OnItemClickListener mOnItemClickListener;
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        mOnItemClickListener = onItemClickListener;
+    }
 
     public static class HomePagerViewHolder extends RecyclerView.ViewHolder {
 
@@ -71,28 +90,29 @@ public class HomePagerAdapter extends RecyclerView.Adapter<HomePagerAdapter.Home
 
         public HomePagerViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(this,itemView);
+            ButterKnife.bind(this, itemView);
         }
     }
-//    private class DriverViewTarget extends BitmapImageViewTarget {
-//
-//        private final GoodsImage mItemHomeGoods;
-//
-//        public DriverViewTarget(GoodsImage ivItemHomeGoods) {
-//            super(ivItemHomeGoods);
-//            mItemHomeGoods = ivItemHomeGoods;
-//        }
-//        @Override
-//        public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-//            int viewWidth = mHolder.mIvItemHomeGoods.getWidth();
-//            float scale = resource.getWidth() / (viewWidth * 1.0f);
-//            int viewHeight = (int) (resource.getHeight() * scale);
-//            mItemHomeGoods.setOriginal(viewWidth, viewHeight);
-////            setCardViewLayoutParams(viewWidth, viewHeight);
-////            resource.setWidth(viewWidth);
-////            resource.setHeight(viewHeight);
-//
-//            super.onResourceReady(mItemHomeGoods, glideAnimation);
-//        }
-//    }
 }
+    //    private class DriverViewTarget extends BitmapImageViewTarget {
+    //
+    //        private final GoodsImage mItemHomeGoods;
+    //
+    //        public DriverViewTarget(GoodsImage ivItemHomeGoods) {
+    //            super(ivItemHomeGoods);
+    //            mItemHomeGoods = ivItemHomeGoods;
+    //        }
+    //        @Override
+    //        public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+    //            int viewWidth = mHolder.mIvItemHomeGoods.getWidth();
+    //            float scale = resource.getWidth() / (viewWidth * 1.0f);
+    //            int viewHeight = (int) (resource.getHeight() * scale);
+    //            mItemHomeGoods.setOriginal(viewWidth, viewHeight);
+    ////            setCardViewLayoutParams(viewWidth, viewHeight);
+    ////            resource.setWidth(viewWidth);
+    ////            resource.setHeight(viewHeight);
+    //
+    //            super.onResourceReady(mItemHomeGoods, glideAnimation);
+    //        }
+    //    }
+

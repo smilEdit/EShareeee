@@ -8,10 +8,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Spinner;
 
+import com.zhy.adapter.recyclerview.MultiItemTypeAdapter;
 import com.zhy.adapter.recyclerview.wrapper.LoadMoreWrapper;
 import com.zzz.easyshare.R;
 import com.zzz.easyshare.adapter.ExploreRvAdapter;
 import com.zzz.easyshare.utils.ZSnack;
+import com.zzz.easyshare.utils.ZToast;
 import com.zzz.easyshare.widget.DividerItemDecoration;
 
 import java.util.ArrayList;
@@ -61,15 +63,17 @@ public class ExplorePager extends BasePager {
 
     @Override
     protected void onUiRefresh(Object o) {
-
-        mExploreRvAdapter = new ExploreRvAdapter(getParentActivity(), R.layout.item_explore, mList);
-        //设置布局管理器
-        mRvExplore.setLayoutManager(new LinearLayoutManager(getParentActivity()));
-        //设置分割线
-        mRvExplore.addItemDecoration(new DividerItemDecoration(getParentActivity(), 1));
-
-        mLoadMoreWrapper = new LoadMoreWrapper<>(mExploreRvAdapter);
-        mLoadMoreWrapper.setLoadMoreView(R.layout.item_message_foot);
+        if (mExploreRvAdapter == null) {
+            mExploreRvAdapter = new ExploreRvAdapter(getParentActivity(), R.layout.item_explore, mList);
+            //设置布局管理器
+            mRvExplore.setLayoutManager(new LinearLayoutManager(getParentActivity()));
+            //设置分割线
+            mRvExplore.addItemDecoration(new DividerItemDecoration(getParentActivity(), 1));
+            //添加尾部局
+            mLoadMoreWrapper = new LoadMoreWrapper<>(mExploreRvAdapter);
+            mLoadMoreWrapper.setLoadMoreView(R.layout.item_message_foot);
+        }
+        //上滑加载更多监听
         mLoadMoreWrapper.setOnLoadMoreListener(new LoadMoreWrapper.OnLoadMoreListener() {
 
             @Override
@@ -83,9 +87,19 @@ public class ExplorePager extends BasePager {
                 }, 1000);
             }
         });
+        //条目点击监听
+        mExploreRvAdapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
+                ZToast.showShortToast(getParentActivity(),position+"");
+            }
 
+            @Override
+            public boolean onItemLongClick(View view, RecyclerView.ViewHolder holder, int position) {
+                return false;
+            }
+        });
         mRvExplore.setAdapter(mLoadMoreWrapper);
-
     }
 
     @Override

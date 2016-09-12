@@ -22,11 +22,10 @@ public class ExploreRvAdapter extends CommonAdapter<String> {
         this.mContext = context;
         this.mList = datas;
     }
-
     @Override
-    protected void convert(ViewHolder holder, String s, int position) {
-        holder.setText(R.id.tv_item_explore_title, "万能适配器哦");
-        holder.setText(R.id.tv_item_explore_address, mList.get(position));
+    protected void convert(ViewHolder holder, String s, final int position) {
+        holder.setText(R.id.tv_item_explore_title, "万能适配器哦")
+                .setText(R.id.tv_item_explore_address, mList.get(position));
         ZImageLoader.setImg(mContext,"http://ww2.sinaimg.cn/large/610dc034jw1f7mixvc7emj20ku0dv74p.jpg",(ImageView)holder.getView(R.id.iv_item_explore_goods));
     }
 }
