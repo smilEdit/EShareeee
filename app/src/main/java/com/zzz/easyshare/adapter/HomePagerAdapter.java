@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.zzz.easyshare.R;
-import com.zzz.easyshare.bean.HomeTestData;
+import com.zzz.easyshare.bean.FuliBean;
 import com.zzz.easyshare.utils.ZImageLoader;
 import com.zzz.easyshare.widget.GoodsImage;
 
@@ -24,11 +24,12 @@ import butterknife.ButterKnife;
  */
 public class HomePagerAdapter extends RecyclerView.Adapter<HomePagerAdapter.HomePagerViewHolder> {
 
-    public  Context             mContext;
-    private List<HomeTestData>  mList;
+    public  Context            mContext;
+//    private List<HomeTestData> mList;
+    private List<FuliBean.ResultsBean> mList;
     private HomePagerViewHolder mHolder;
 
-    public HomePagerAdapter(List<HomeTestData> list, Context context) {
+    public HomePagerAdapter(List<FuliBean.ResultsBean> list, Context context) {
         this.mList = list;
         this.mContext = context;
     }
@@ -42,18 +43,18 @@ public class HomePagerAdapter extends RecyclerView.Adapter<HomePagerAdapter.Home
     @Override
     public void onBindViewHolder(final HomePagerViewHolder holder, int position) {
         this.mHolder = holder;
-        holder.mTvItemHomeTitle.setText(mList.get(position).getTitle());
-        ZImageLoader.setImgp(mContext, mList.get(position).getImage(), holder.mIvItemHomeGoods);
+        holder.mTvItemHomeTitle.setText(mList.get(position).getDesc());
+        ZImageLoader.setImgp(mContext, mList.get(position).getUrl(), holder.mIvItemHomeGoods);
         //        Glide.with(mContext).load(mList.get(position).getImage()).into(holder.mIvItemHomeGoods);
         //        Picasso.with(mContext).load(mList.get(position).getImage()).into(holder.mIvItemHomeGoods);
         //设置详细描述
         //        holder.mTvItemHomeDetails.setText(mList.get(position).get);
         ZImageLoader.setAvatar(mContext, "http://img3.imgtn.bdimg.com/it/u=1691364090,593751885&fm=11&gp=0.jpg", holder.mIvItemHomeUser);
         if (mOnItemClickListener != null) {
-            holder.itemView.setOnClickListener(new View.OnClickListener(){
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    mOnItemClickListener.OnItemClick(view,holder.mTvItemHomeTitle);
+                    mOnItemClickListener.OnItemClick(view, holder.mTvItemHomeTitle);
                 }
             });
         }
@@ -65,7 +66,7 @@ public class HomePagerAdapter extends RecyclerView.Adapter<HomePagerAdapter.Home
     }
 
     //条目点击回调
-    public interface OnItemClickListener{
+    public interface OnItemClickListener {
         void OnItemClick(View view, TextView title);
     }
 

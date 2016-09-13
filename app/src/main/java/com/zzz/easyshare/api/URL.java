@@ -5,5 +5,5 @@ package com.zzz.easyshare.api;
  * @创建时间 2016/8/19 15:27
  */
 public class URL {
-    public static final String url = "http://";
+    public static final String url = "http://gank.io/api/data/";
 }

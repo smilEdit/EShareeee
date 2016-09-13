@@ -17,6 +17,7 @@ import com.zzz.easyshare.adapter.MessageAdapter;
 import com.zzz.easyshare.ui.activity.WebDetailActivity;
 import com.zzz.easyshare.utils.ZImageLoader;
 import com.zzz.easyshare.utils.ZSnack;
+import com.zzz.easyshare.utils.ZToast;
 import com.zzz.easyshare.widget.DividerItemDecoration;
 
 import java.util.ArrayList;
@@ -98,6 +99,12 @@ public class MessagePager extends BasePager implements View.OnClickListener {
             @Override
             public void runing() {
 
+            }
+        });
+        mMessageAdapter.setOnItemClickListener(new MessageAdapter.OnItemClickListener() {
+            @Override
+            public void OnItemClick(int position) {
+                ZToast.showShortToast(getParentActivity(),""+position);
             }
         });
     }

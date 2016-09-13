@@ -74,6 +74,7 @@ public class HttpLoader {
         }
         final String url = sb.toString();
         Log.d("url",url);
+        System.out.println("url=========" + url);
         if (call != null) {
             try {
                 Response<ResponseBody> execute = call.execute();
@@ -85,17 +86,14 @@ public class HttpLoader {
                 if (TextUtils.isEmpty(result)) {
                     result = CacheManager.getInstance().getCacheData(url);
                 } else {
-                    CacheManager.getInstance().saveCacheData(url, result);
+//                    CacheManager.getInstance().saveCacheData(url, result);
                 }
                 if (result == null) {
                     return null;
                 } else {
-                    //// TODO: 2016/8/31
                     Gson gson = new Gson();
 
                     return gson.fromJson(result,clazz);
-//                    return XmlUtils.toBean(clazz, result.getBytes());
-
                 }
             } catch (IOException e) {
                 e.printStackTrace();

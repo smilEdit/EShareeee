@@ -44,7 +44,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHo
 
     //item点击回调
     public interface OnItemClickListener {
-        void OnItemClick(String str);
+        void OnItemClick(int position);
     }
 
     private OnItemClickListener mOnItemClickListener;
@@ -83,7 +83,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHo
     }
 
     @Override
-    public void onBindViewHolder(final MyViewHolder holder, int position) {
+    public void onBindViewHolder(final MyViewHolder holder, final int position) {
         if (getItemViewType(position) == TYPE_ITEM) {
             holder.Title.setText("title");
             holder.Date.setText("1993-07-19:::::::" + position);
@@ -92,7 +92,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHo
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        //  mOnItemClickListener.OnItemClick("test String");
+                        mOnItemClickListener.OnItemClick(position);
 
                     }
                 });

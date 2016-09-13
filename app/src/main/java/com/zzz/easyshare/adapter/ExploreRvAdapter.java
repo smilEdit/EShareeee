@@ -28,4 +28,5 @@ public class ExploreRvAdapter extends CommonAdapter<String> {
                 .setText(R.id.tv_item_explore_address, mList.get(position));
         ZImageLoader.setImg(mContext,"http://ww2.sinaimg.cn/large/610dc034jw1f7mixvc7emj20ku0dv74p.jpg",(ImageView)holder.getView(R.id.iv_item_explore_goods));
     }
+
 }

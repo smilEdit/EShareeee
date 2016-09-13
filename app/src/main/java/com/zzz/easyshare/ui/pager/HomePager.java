@@ -14,7 +14,7 @@ import com.malinskiy.superrecyclerview.OnMoreListener;
 import com.malinskiy.superrecyclerview.SuperRecyclerView;
 import com.zzz.easyshare.R;
 import com.zzz.easyshare.adapter.HomePagerAdapter;
-import com.zzz.easyshare.bean.HomeTestData;
+import com.zzz.easyshare.bean.FuliBean;
 import com.zzz.easyshare.manager.DataLoader;
 import com.zzz.easyshare.utils.ZSnack;
 import com.zzz.easyshare.utils.ZToast;
@@ -39,9 +39,13 @@ public class HomePager extends BasePager {
     @Bind(R.id.rv_home_goods)
     SuperRecyclerView mRvHomeGoods;
 
+    int page = 1;
+
     private String TAG = "HomePager";
-    private HomePagerAdapter   mAdapter;
-    private List<HomeTestData> mList;
+    private HomePagerAdapter mAdapter;
+    //    private List<HomeTestData> mList;
+
+    private List<FuliBean.ResultsBean> mFuliList = new ArrayList<>();
 
     /**
      * 构造方法
@@ -60,15 +64,22 @@ public class HomePager extends BasePager {
         return view;
     }
 
+
     @Override
     protected Object OnLoadNetData() {
-        mList = new ArrayList<>();
-        mList.add(new HomeTestData("http://ww1.sinaimg.cn/large/7a8aed7bgw1ewgtp8kircj20ht0qodj0.jpg", "this is a test title1"));
-        mList.add(new HomeTestData("https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2243962948,2705986633&fm=116&gp=0.jpg", "this is a test title2"));
-        mList.add(new HomeTestData("http://ww3.sinaimg.cn/large/7a8aed7bgw1ew38eojcpzj20p010kwjr.jpg", "this is a test title3"));
-        mList.add(new HomeTestData("https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=137160088,3671401105&fm=116&gp=0.jpg", "this is a test title4"));
-        mList.add(new HomeTestData("http://ww1.sinaimg.cn/large/610dc034jw1f7lughzrjmj20u00k9jti.jpg", "this is a test title5"));
-        return mList;
+        //        mList = new ArrayList<>();
+        //        mList.add(new HomeTestData("http://ww1.sinaimg.cn/large/7a8aed7bgw1ewgtp8kircj20ht0qodj0.jpg", "this is a test title1"));
+        //        mList.add(new HomeTestData("https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2243962948,2705986633&fm=116&gp=0.jpg", "this is a test title2"));
+        //        mList.add(new HomeTestData("http://ww3.sinaimg.cn/large/7a8aed7bgw1ew38eojcpzj20p010kwjr.jpg", "this is a test title3"));
+        //        mList.add(new HomeTestData("https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=137160088,3671401105&fm=116&gp=0.jpg", "this is a test title4"));
+        //        mList.add(new HomeTestData("http://ww1.sinaimg.cn/large/610dc034jw1f7lughzrjmj20u00k9jti.jpg", "this is a test title5"));
+
+        FuliBean bean = DataLoader.getInstance().getBean(FuliBean.class, "福利", "10", page + "");
+        if (bean != null) {
+            List<FuliBean.ResultsBean> list = bean.getResults();
+            mFuliList.addAll(list);
+        }
+        return null;
     }
 
     @Override
@@ -79,7 +90,8 @@ public class HomePager extends BasePager {
     @Override
     protected void onUiRefresh(Object o) {
         if (mAdapter == null) {
-            mAdapter = new HomePagerAdapter(mList, getParentActivity());
+            mAdapter = new HomePagerAdapter(mFuliList, getParentActivity());
+            System.out.println(mFuliList);
             //            mRvHomeGoods.setOnScrollListener(new RecyclerView.OnScrollListener() {
             //                int[] lastVisibleItemPositions;
             //
@@ -87,7 +99,6 @@ public class HomePager extends BasePager {
             //                public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
             //                    super.onScrollStateChanged(recyclerView, newState);
             //                    if (newState == RecyclerView.SCROLL_STATE_IDLE && lastVisibleItemPositions[0] + 1 == mAdapter.getItemCount()) {
-            //                        System.out.println(111);
             ////                        upRefresh();
             //                        mSrlHomeRefresh.setRefreshing(true);
             //                        new Handler().postDelayed(new Runnable() {
@@ -139,7 +150,7 @@ public class HomePager extends BasePager {
         mAdapter.setOnItemClickListener(new HomePagerAdapter.OnItemClickListener() {
             @Override
             public void OnItemClick(View view, TextView title) {
-                ZToast.showShortToast(getParentActivity(),title.getText().toString());
+                ZToast.showShortToast(getParentActivity(), title.getText().toString());
             }
         });
         //        mRvHomeGoods.setupSwipeToDismiss(new SwipeDismissRecyclerViewTouchListener.DismissCallbacks() {
@@ -166,14 +177,14 @@ public class HomePager extends BasePager {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                //                HomeTestData data = getNetData();
-
-                for (int i = 0; i < 8; i++) {
-                    mList.add(new HomeTestData("http://ww4.sinaimg.cn/large/610dc034gw1ew5b4ri9mxj20ic0qoq4t.jpg", "this is a test 666"));
+                page++;
+                FuliBean fuliBean = getNetData();
+                if (fuliBean != null) {
+                    mFuliList.addAll(fuliBean.getResults());
+                    mHandler.sendEmptyMessage(0);
+                } else {
+                    mHandler.sendEmptyMessage(2);
                 }
-                mHandler.sendEmptyMessageDelayed(0, 2000);
-                //                    mHandler.sendEmptyMessage(0);
-
             }
         }).start();
     }
@@ -183,10 +194,10 @@ public class HomePager extends BasePager {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                //                HomeTestData data = getNetData();
-                HomeTestData data = new HomeTestData("http://ww4.sinaimg.cn/large/610dc034gw1ew5b4ri9mxj20ic0qoq4t.jpg", "this is a test 666");
-                if (data != null) {
-                    mList.add(0, data);
+                page = 1;
+                FuliBean fuliBean = getNetData();
+                if (fuliBean != null) {
+                    mFuliList.addAll(0, fuliBean.getResults());
                     mHandler.sendEmptyMessage(0);
                 } else {
                     mHandler.sendEmptyMessage(1);
@@ -202,7 +213,7 @@ public class HomePager extends BasePager {
                 case 0:
                     //以防万一 为了健壮
                     if (mAdapter == null) {
-                        mAdapter = new HomePagerAdapter(mList, getParentActivity());
+                        mAdapter = new HomePagerAdapter(mFuliList, getParentActivity());
                         mRvHomeGoods.setAdapter(mAdapter);
                     } else {
                         mAdapter.notifyDataSetChanged();
@@ -219,7 +230,7 @@ public class HomePager extends BasePager {
         }
     };
 
-    private HomeTestData getNetData() {
-        return DataLoader.getInstance().getBean(HomeTestData.class, "", "", "");
+    private FuliBean getNetData() {
+        return DataLoader.getInstance().getBean(FuliBean.class, "福利", "10", page + "");
     }
 }
