@@ -30,6 +30,7 @@ public class HttpLoader {
     private static final String TAG = "HttpLoader";
     private final NetLoader mNetLoader;
 
+    Gson gson =  new Gson();
     public static HttpLoader getInstance() {
         return mInstance;
     }
@@ -74,7 +75,6 @@ public class HttpLoader {
         }
         final String url = sb.toString();
         Log.d("url",url);
-        System.out.println("url=========" + url);
         if (call != null) {
             try {
                 Response<ResponseBody> execute = call.execute();
@@ -91,8 +91,6 @@ public class HttpLoader {
                 if (result == null) {
                     return null;
                 } else {
-                    Gson gson = new Gson();
-
                     return gson.fromJson(result,clazz);
                 }
             } catch (IOException e) {

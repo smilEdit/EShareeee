@@ -21,7 +21,7 @@ public final class CacheManager {
      * 初始化本类对象
      */
     private static CacheManager sCacheManager = new CacheManager();
-    private String mCachePath;
+    private static String mCachePath;
 
     /**
      * 私有构造函数，防止其他类创建本类对象。

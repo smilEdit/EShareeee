@@ -67,13 +67,6 @@ public class HomePager extends BasePager {
 
     @Override
     protected Object OnLoadNetData() {
-        //        mList = new ArrayList<>();
-        //        mList.add(new HomeTestData("http://ww1.sinaimg.cn/large/7a8aed7bgw1ewgtp8kircj20ht0qodj0.jpg", "this is a test title1"));
-        //        mList.add(new HomeTestData("https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2243962948,2705986633&fm=116&gp=0.jpg", "this is a test title2"));
-        //        mList.add(new HomeTestData("http://ww3.sinaimg.cn/large/7a8aed7bgw1ew38eojcpzj20p010kwjr.jpg", "this is a test title3"));
-        //        mList.add(new HomeTestData("https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=137160088,3671401105&fm=116&gp=0.jpg", "this is a test title4"));
-        //        mList.add(new HomeTestData("http://ww1.sinaimg.cn/large/610dc034jw1f7lughzrjmj20u00k9jti.jpg", "this is a test title5"));
-
         FuliBean bean = DataLoader.getInstance().getBean(FuliBean.class, "福利", "10", page + "");
         if (bean != null) {
             List<FuliBean.ResultsBean> list = bean.getResults();
@@ -91,32 +84,7 @@ public class HomePager extends BasePager {
     protected void onUiRefresh(Object o) {
         if (mAdapter == null) {
             mAdapter = new HomePagerAdapter(mFuliList, getParentActivity());
-            System.out.println(mFuliList);
-            //            mRvHomeGoods.setOnScrollListener(new RecyclerView.OnScrollListener() {
-            //                int[] lastVisibleItemPositions;
-            //
-            //                @Override
-            //                public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-            //                    super.onScrollStateChanged(recyclerView, newState);
-            //                    if (newState == RecyclerView.SCROLL_STATE_IDLE && lastVisibleItemPositions[0] + 1 == mAdapter.getItemCount()) {
-            ////                        upRefresh();
-            //                        mSrlHomeRefresh.setRefreshing(true);
-            //                        new Handler().postDelayed(new Runnable() {
-            //                            @Override
-            //                            public void run() {
-            //                                ZSnack.showSnackShort(mRvHomeGoods, "加载更多~");
-            //                                mSrlHomeRefresh.setRefreshing(false);
-            //                            }
-            //                        }, 1000);
-            //                    }
-            //                }
-            //
-            //                @Override
-            //                public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-            //                    super.onScrolled(recyclerView, dx, dy);
-            //                    lastVisibleItemPositions = layoutManager.findLastVisibleItemPositions(null);
-            //                }
-            //            });
+
             //设置布局管理器
             mRvHomeGoods.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
             //设置默认的动画
@@ -153,17 +121,7 @@ public class HomePager extends BasePager {
                 ZToast.showShortToast(getParentActivity(), title.getText().toString());
             }
         });
-        //        mRvHomeGoods.setupSwipeToDismiss(new SwipeDismissRecyclerViewTouchListener.DismissCallbacks() {
-        //            @Override
-        //            public boolean canDismiss(int position) {
-        //                return true;
-        //            }
-        //
-        //            @Override
-        //            public void onDismiss(RecyclerView recyclerView, int[] reverseSortedPositions) {
-        //
-        //            }
-        //        });
+
     }
 
 
@@ -217,7 +175,7 @@ public class HomePager extends BasePager {
                         mRvHomeGoods.setAdapter(mAdapter);
                     } else {
                         mAdapter.notifyDataSetChanged();
-                        ZSnack.showSnackShort(mRvHomeGoods, "咻咻咻咻咻咻~");
+                        ZSnack.showSnackShort(mRvHomeGoods, "已更新");
                     }
                     break;
                 case 1:
