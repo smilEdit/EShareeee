@@ -75,16 +75,22 @@ public class ExplorePager extends BasePager {
             mRvExplore.setLayoutManager(new LinearLayoutManager(getParentActivity()));
             //设置分割线
             mRvExplore.addItemDecoration(new DividerItemDecoration(getParentActivity(), 1));
+            //加载Item动画
+            //            mRvExplore.setItemAnimator();
             //添加尾部局
             mLoadMoreWrapper = new LoadMoreWrapper<>(mExploreRvAdapter);
             mLoadMoreWrapper.setLoadMoreView(R.layout.item_message_foot);
         }
+        initListener();
+        mRvExplore.setAdapter(mLoadMoreWrapper);
+    }
+
+    private void initListener() {
         //上滑加载更多监听
         mLoadMoreWrapper.setOnLoadMoreListener(new LoadMoreWrapper.OnLoadMoreListener() {
 
             @Override
             public void onLoadMoreRequested() {
-                ZSnack.showSnackShort(mView, "加载中");
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -110,7 +116,26 @@ public class ExplorePager extends BasePager {
                 return false;
             }
         });
-        mRvExplore.setAdapter(mLoadMoreWrapper);
+        //下拉刷新监听
+        mSrlExploreRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        page = 1;
+                        FuliBean fuliBean = getNetData();
+                        if (fuliBean != null) {
+                            mList.addAll(0, fuliBean.getResults());
+                            mHandler.sendEmptyMessage(0);
+                        } else {
+                            mHandler.sendEmptyMessage(1);
+                        }
+                    }
+                }).start();
+                mSrlExploreRefresh.setRefreshing(false);
+            }
+        });
     }
 
     private Handler mHandler = new Handler() {

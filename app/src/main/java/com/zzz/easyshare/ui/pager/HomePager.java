@@ -54,7 +54,7 @@ public class HomePager extends BasePager {
      */
     public HomePager(Activity context) {
         super(context);
-        setNoPagerState(true);
+        setNoPagerState(false);
     }
 
 
@@ -72,7 +72,7 @@ public class HomePager extends BasePager {
             List<FuliBean.ResultsBean> list = bean.getResults();
             mFuliList.addAll(list);
         }
-        return null;
+        return mFuliList;
     }
 
     @Override
