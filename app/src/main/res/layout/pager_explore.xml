@@ -13,12 +13,14 @@
             android:id="@+id/spinner_explore_types"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:entries="@array/alltypes"
             android:layout_weight="1">
 
         </Spinner>
 
         <Spinner
             android:id="@+id/spinner_explore_sorting"
+            android:entries="@array/sorting"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"></Spinner>

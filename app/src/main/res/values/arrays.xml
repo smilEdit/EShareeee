@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="alltypes">
+        <item>免费</item>
+        <item>奢侈</item>
+        <item>凶器</item>
+        <item>秒杀</item>
+    </string-array>
+    <string-array name="sorting">
+        <item>价格</item>
+        <item>距离</item>
+        <item>热度</item>
+        <item>可以</item>
+    </string-array>
+</resources>

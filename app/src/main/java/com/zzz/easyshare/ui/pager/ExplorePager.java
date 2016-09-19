@@ -7,6 +7,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Spinner;
 
 import com.zhy.adapter.recyclerview.MultiItemTypeAdapter;
@@ -134,6 +135,29 @@ public class ExplorePager extends BasePager {
                     }
                 }).start();
                 mSrlExploreRefresh.setRefreshing(false);
+            }
+        });
+        //spinner监听
+        mSpinnerExploreTypes.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                ZSnack.showSnackShort(mRvExplore, i + "");
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        mSpinnerExploreSorting.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                ZSnack.showSnackShort(mRvExplore, i + "");
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
             }
         });
     }
